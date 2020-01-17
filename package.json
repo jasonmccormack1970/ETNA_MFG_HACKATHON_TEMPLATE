@@ -1,8 +1,8 @@
 {
-    "name": "name-contests-api",
+    "name": "etna_hackathone_template",
     "version": "1.0.0",
-    "description": "Name contests API",
-    "author": "",
+    "description": "Etna MFG Hackathone Template",
+    "author": "Jason McCormack",
     "license": "ISC",
     "scripts": {
         "start": "node lib/index",
@@ -10,15 +10,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/reactjscamp/name-contests.git"
+        "url": ""
     },
     "keywords": [
         "graphql"
     ],
-    "bugs": {
-        "url": "https://github.com/reactjscamp/name-contests/issues"
-    },
-    "homepage": "https://github.com/reactjscamp/name-contests#readme",
     "dependencies": {
         "axios": "^0.19.1",
         "chalk": "^3.0.0",
