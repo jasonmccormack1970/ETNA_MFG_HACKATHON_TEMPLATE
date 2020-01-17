@@ -16,8 +16,6 @@
         "url": "https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE/issues"
     },
     "homepage": "https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE#readme",
-    "dependencies": {
-        "chalk": "^3.0.0"
-    },
+    "dependencies": {},
     "devDependencies": {}
 }
