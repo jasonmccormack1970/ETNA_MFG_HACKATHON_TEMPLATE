@@ -5,14 +5,11 @@ import { Query } from 'react-apollo';
 // important to use back ticks
 const LAUNCHES_QUERY = gql`
     query LaunchesQuery {
-        launch_info {
-            flight_number
-            mission_name
-        }
+        hello
     }
 `;
 
-export class launches extends Component {
+export class welcome extends Component {
     render() {
         return (
             <div>
@@ -25,7 +22,8 @@ export class launches extends Component {
                         if (error) {
                             return console.log(error);
                         }
-                        return <h5>testing .....</h5>;
+                        console.log(data);
+                        return <h5>test .... </h5>;
                     }}
                 </Query>
             </div>
@@ -33,4 +31,4 @@ export class launches extends Component {
     }
 }
 
-export default launches;
+export default welcome;
