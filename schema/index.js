@@ -37,22 +37,6 @@ const RootQueryType = new GraphQLObjectType({
             },
         },
 
-        // about_Me_2: {
-        //     type: new GraphQLList(LaunchType),
-        //     description:
-        //         'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
-        //     args: {
-        //         flight_number: { type: new GraphQLNonNull(GraphQLInt) },
-        //     },
-        //     resolve: (obj, args) => {
-        //         return axios
-        //             .get(
-        //                 `https://api.spacexdata.com/v3/launches/${args.flight_number}`,
-        //             )
-        //             .then((res) => res.data);
-        //     },
-        // },
-
         about_Me: {
             type: MeType,
             description:
@@ -62,6 +46,17 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: (obj, args, { pgPool }) => {
                 return pgdb(pgPool).getUser(args.key);
+            },
+        },
+
+        customer_info: {
+            type: new GraphQLList(LaunchType),
+            description:
+                'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
+            resolve: (obj, args) => {
+                return axios
+                    .get('https://api.spacexdata.com/v3/launches')
+                    .then((res) => res.data);
             },
         },
     },
