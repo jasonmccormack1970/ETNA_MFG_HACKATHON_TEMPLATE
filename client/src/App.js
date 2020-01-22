@@ -4,6 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import './App.css';
 import Launches from './components/launches';
 import Hello from './components/hello';
+import Me from './components/me';
 
 const client = new ApolloClient({
     uri: 'http://localhost:3100/graphql',
@@ -15,8 +16,9 @@ function App() {
             <div className="container">
                 <h2>Enta Manufacturing Hackathon</h2>
             </div>
-            <Launches />
             <Hello />
+            <Me />
+            <Launches />
         </ApolloProvider>
     );
 }

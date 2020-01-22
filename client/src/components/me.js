@@ -3,24 +3,27 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 // important to use back ticks
-const LAUNCHES_QUERY = gql`
-    query LaunchesQuery {
-        launch_info {
-            flight_number
-            mission_name
+const ME_QUERY = gql`
+    query MeQuery {
+        about_Me(key: "4242") {
+            id
+            fullName
+            department
+            email
         }
     }
 `;
 
-export class launches extends Component {
+export class me extends Component {
     render() {
         return (
             <div>
-                <h5>Launch Data</h5>
-                <Query query={LAUNCHES_QUERY}>
+                <h5>About Me</h5>
+                <Query query={ME_QUERY}>
                     {({ loading, error, data }) => {
+                        console.log(data);
                         if (loading) {
-                            return <h5>Loading Data ......</h5>;
+                            return <h4>Loading Data ......</h4>;
                         }
                         if (error) {
                             return console.log(error);
@@ -34,4 +37,4 @@ export class launches extends Component {
     }
 }
 
-export default launches;
+export default me;
