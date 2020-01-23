@@ -9,7 +9,7 @@ To use this branch, you must have the following software installed. Use the late
 
 ## NPM Scripts
 
-to start the Express, Graphql, JSON and react
+to start EXPRESS, GRAPHQL, JSON and REACT
 
 ```
 npm run dev
