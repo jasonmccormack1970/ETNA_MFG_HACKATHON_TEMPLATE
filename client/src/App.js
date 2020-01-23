@@ -7,7 +7,7 @@ import Hello from './components/hello';
 import Me from './components/me';
 
 const client = new ApolloClient({
-    uri: 'http://localhost:3100/graphql',
+    uri: 'http://localhost:3600/graphql',
 });
 
 function App() {

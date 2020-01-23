@@ -9,10 +9,14 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
+const json_server_config = require('../json-server');
+
+let jsonServerPort = json_server_config.port;
 
 const pgdb = require('../database/pgdb');
 const MeType = require('./types/me');
 const LaunchType = require('./types/launch');
+const CustomerType = require('./types/customer');
 
 // The root query type is where in the data graph begins
 const RootQueryType = new GraphQLObjectType({
@@ -49,13 +53,27 @@ const RootQueryType = new GraphQLObjectType({
             },
         },
 
-        customer_info: {
-            type: new GraphQLList(LaunchType),
-            description:
-                'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
-            resolve: (obj, args) => {
+        customer: {
+            type: CustomerType,
+            description: 'Customer data from a locally hosted mock api',
+            args: {
+                id: { type: GraphQLString },
+            },
+            resolve(parentValue, args) {
                 return axios
-                    .get('https://api.spacexdata.com/v3/launches')
+                    .get(
+                        `http://localhost:${jsonServerPort}/customers/` +
+                            args.id,
+                    )
+                    .then((res) => res.data);
+            },
+        },
+        customers: {
+            type: new GraphQLList(CustomerType),
+            description: 'Customer data from a locally hosted mock api',
+            resolve(parentValue, args) {
+                return axios
+                    .get(`http://localhost:${jsonServerPort}/customers`)
                     .then((res) => res.data);
             },
         },
