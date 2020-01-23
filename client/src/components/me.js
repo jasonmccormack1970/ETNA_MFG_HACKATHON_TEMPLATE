@@ -21,7 +21,6 @@ export class me extends Component {
                 <h5>About Me</h5>
                 <Query query={ME_QUERY}>
                     {({ loading, error, data }) => {
-                        console.log(data);
                         if (loading) {
                             return <h4>Loading Data ......</h4>;
                         }
