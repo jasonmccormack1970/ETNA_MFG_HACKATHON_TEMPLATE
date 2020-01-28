@@ -2,6 +2,16 @@ import React from 'react';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Styled from 'styled-components';
 
+const ColoredLine = ({ color }) => (
+    <hr
+        style={{
+            color: color,
+            backgroundColor: color,
+            height: 5,
+        }}
+    />
+);
+
 const Styles = Styled.div`
 `;
 
@@ -29,5 +39,6 @@ export const NavigationBar = () => (
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
+        <ColoredLine color="red" />
     </Styles>
 );

@@ -8,8 +8,8 @@
         "start": "node lib/index",
         "server": "nodemon --exec node lib/index.js",
         "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"json-server --watch testdata.json\" \"npm run client\"",
-        "json:server": "json-server --watch testdata.json"
+        "dev": "concurrently \"npm run server\" \"json-server --watch mock_api_data.json\" \"npm run client\"",
+        "json:server": "json-server --watch mock_api_data.json"
     },
     "repository": {
         "type": "git",

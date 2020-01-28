@@ -23,7 +23,7 @@ export class welcome extends Component {
                             return console.log(error);
                         }
                         console.log(data);
-                        return <h5> Done </h5>;
+                        return <p> {data.hello} </p>;
                     }}
                 </Query>
             </div>

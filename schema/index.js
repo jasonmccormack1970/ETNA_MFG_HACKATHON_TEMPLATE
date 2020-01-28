@@ -27,7 +27,7 @@ const RootQueryType = new GraphQLObjectType({
             type: GraphQLString,
             description: 'The mandatory hello world example....',
             resolve: () =>
-                'Hello World - You have connected to you ETNA Hackathon Server ',
+                'Hello World - This message has come from your GraphQL server',
         },
 
         launch_info: {
@@ -55,7 +55,8 @@ const RootQueryType = new GraphQLObjectType({
 
         customer: {
             type: CustomerType,
-            description: 'Customer data from a locally hosted mock api',
+            description:
+                'Return selected Customer data from a locally hosted mock api',
             args: {
                 id: { type: GraphQLString },
             },
@@ -70,7 +71,8 @@ const RootQueryType = new GraphQLObjectType({
         },
         customers: {
             type: new GraphQLList(CustomerType),
-            description: 'Customer data from a locally hosted mock api',
+            description:
+                'Return all Customer data from a locally hosted mock api',
             resolve(parentValue, args) {
                 return axios
                     .get(`http://localhost:${jsonServerPort}/customers`)
@@ -80,10 +82,33 @@ const RootQueryType = new GraphQLObjectType({
     },
 });
 
+const RootMutationType = new GraphQLObjectType({
+    name: 'MutationQuery',
+    fields: {
+        addNewCustomer: {
+            type: CustomerType,
+            description: 'Add a new customer record via the mock api',
+            args: {
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                region: { type: new GraphQLNonNull(GraphQLInt) },
+            },
+            resolve(obj, args) {
+                axios
+                    .post(`http://localhost:${jsonServerPort}/customers`, {
+                        name: args.name,
+                        email: args.email,
+                        region: args.region,
+                    })
+                    .then((res) => res.data);
+            },
+        },
+    },
+});
+
 const ncSchema = new GraphQLSchema({
     query: RootQueryType,
-
-    // mutation: ...
+    mutation: RootMutationType,
 });
 
 module.exports = ncSchema;

@@ -1,0 +1,23 @@
+{
+    "departments": [
+        {
+            "id": "465",
+            "Dept": "Buying",
+            "Location": "London"
+        }
+    ],
+    "customers": [
+        {
+            "id": "1",
+            "name": "ABC Ltd",
+            "email": "info@abctestcompany.co.test",
+            "region": 654
+        }
+    ],
+    "customer_dept": [
+        {
+            "customer_id": "1",
+            "dept_id": "465"
+        }
+    ]
+}
