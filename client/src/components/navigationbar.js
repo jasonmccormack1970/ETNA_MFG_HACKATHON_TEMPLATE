@@ -7,7 +7,7 @@ const ColoredLine = ({ color }) => (
         style={{
             color: color,
             backgroundColor: color,
-            height: 5,
+            height: 3,
         }}
     />
 );
@@ -17,11 +17,14 @@ const Styles = Styled.div`
 
 export const NavigationBar = () => (
     <Styles>
+        <ColoredLine color="red" />
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">Hackathone Environment</Navbar.Brand>
+            <Navbar.Brand href="/">
+                <h5>Hackathone Environment</h5>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+                <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/test1">Test Page</Nav.Link>
                     <NavDropdown title="Servers" id="basic-nav-dropdown">
@@ -29,13 +32,12 @@ export const NavigationBar = () => (
                             GraphQL Server
                         </NavDropdown.Item>
                         <NavDropdown.Item href="http://localhost:3700">
-                            JSON Server
+                            Mock API Server
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Spare
-                        </NavDropdown.Item>
                     </NavDropdown>
+
+                    <Nav.Link href="/empty">Empty Page</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

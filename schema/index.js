@@ -44,7 +44,7 @@ const RootQueryType = new GraphQLObjectType({
         about_Me: {
             type: MeType,
             description:
-                'Infomation about me and to do list from ProstgresDB & MongoBD',
+                'Infomation about me (logged in??) and to do list from ProstgresDB & MongoBD',
             args: {
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
