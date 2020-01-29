@@ -40,7 +40,7 @@ Now open a Git Bash terminal from within Visual Code and start your development 
 ```
 npm run dev
 ```
-You should see the following messages displayed in the terminal window 
+You should see the following messages displayed in the terminal window. Note: there will be other information logged, take a moment to check that no errors were encoutered. 
 
 ```
 Loading mock_api_data.json
@@ -59,7 +59,7 @@ Express GraphQL Server Started ... Listening on Port 3600 - http://localhost:360
 A browser session should also automatically start connecting you to http://localhost:3500/ 
 This is the home page of your development environment. 
 
-
+# Creating Your Postgres Database & Test Data
 
 
 
