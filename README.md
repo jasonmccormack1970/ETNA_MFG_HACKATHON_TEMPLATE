@@ -43,6 +43,8 @@ npm run dev
 You should see the following messages displayed in the terminal window 
 
 ```
+Loading mock_api_data.json
+
 Resources
 http://localhost:3700/departments
 http://localhost:3700/customers
