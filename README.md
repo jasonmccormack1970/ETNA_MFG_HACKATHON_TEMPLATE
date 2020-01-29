@@ -17,7 +17,7 @@ For example your root c drive.
 ```
 cd c:\
 ```
-Next download the hackathone repo
+Next download the hackathon repo
 ```
 git clone https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE.git
 ```
