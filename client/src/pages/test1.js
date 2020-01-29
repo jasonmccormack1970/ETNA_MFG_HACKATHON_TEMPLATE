@@ -5,6 +5,8 @@ import Hello from '../components/hello';
 // is then sent to a react component as a "prop"
 const stuff = {
     message1: 'query HelloQuery {hello}',
+    otherData: 'some info??',
+    someMore: 34,
 };
 
 export default function test1() {
