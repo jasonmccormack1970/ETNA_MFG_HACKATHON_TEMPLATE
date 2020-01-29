@@ -28,6 +28,7 @@ export const NavigationBar = () => (
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/test1">Test Page</Nav.Link>
                     <NavDropdown title="Servers" id="basic-nav-dropdown">
+                        <NavDropdown.Divider />
                         <NavDropdown.Item href="http://localhost:3600/graphql">
                             GraphQL Server
                         </NavDropdown.Item>

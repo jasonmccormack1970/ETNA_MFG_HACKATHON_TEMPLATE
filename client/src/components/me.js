@@ -13,27 +13,24 @@ const ME_QUERY = gql`
         }
     }
 `;
-
-export class me extends Component {
-    render() {
-        return (
-            <div>
-                <h5>About Me</h5>
-                <Query query={ME_QUERY}>
-                    {({ loading, error, data }) => {
-                        if (loading) {
-                            return <h4>Loading Data ......</h4>;
-                        }
-                        if (error) {
-                            return console.log(error);
-                        }
-                        console.log(data);
-                        return <h5>Done .....</h5>;
-                    }}
-                </Query>
-            </div>
-        );
-    }
+function me() {
+    return (
+        <div>
+            <h5>About Me</h5>
+            <Query query={ME_QUERY}>
+                {({ loading, error, data }) => {
+                    if (loading) {
+                        return <h4>Loading Data ......</h4>;
+                    }
+                    if (error) {
+                        return console.log(error);
+                    }
+                    console.log(data);
+                    return <h5>Done .....</h5>;
+                }}
+            </Query>
+        </div>
+    );
 }
 
 export default me;
