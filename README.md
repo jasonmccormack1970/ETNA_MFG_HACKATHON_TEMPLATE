@@ -1,8 +1,6 @@
->
+
 > Before starting made sure you have 
 > installed the prerequisite software
->
-
 
 # Prerequisites
 
@@ -11,6 +9,58 @@ To use this branch, you must have the following software installed. Use the late
 -   Node.js - https://nodejs.org/en/download/
 -   Git bash - https://git-scm.com/download/
 -   PostgresDB - https://www.postgresql.org/download/
+
+# Creating Your Development Environment
+
+Open a git bash terminal, Using 'cd' change directory to where you want to create your installation folder.
+For example your root c drive. 
+```
+cd c:\
+```
+Next download the hackathone repo
+```
+git clone https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE.git
+```
+A new folder called ETNA_MFG_HACKATHON_TEMPLATE will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
+Change directory into the ETNA_MFG_HACKATHON_TEMPLATE folder then run the npm package manager installer
+```
+cd ETNA_MFG_HACKATHON_TEMPLATE/
+npm install
+```
+Now change directory into the react client folder and run the npm package manager installer
+```
+cd client
+npm install
+```
+You can close your Git Bash terminal once the npm installer has completed.
+Now open the ETNA_MFG_HACKATHON_TEMPLATE folder in Visual Code
+Check that you have a node_modules folder in the root of your project and a second node_modules folder under the client folder.
+
+Now open a Git Bash terminal from within Visual Code and start your development environment.
+```
+npm run dev
+```
+You should see the following messages displayed in the terminal window 
+
+```
+Resources
+http://localhost:3700/departments
+http://localhost:3700/customers
+http://localhost:3700/customer_dept
+
+Home
+http://localhost:3700
+
+Express GraphQL Server Started ... Listening on Port 3600 - http://localhost:3600/graphql
+```
+
+A browser session should also automatically start connecting you to http://localhost:3500/ 
+This is the home page of your development environment. 
+
+
+
+
+
 
 ## NPM Scripts
 
@@ -37,6 +87,8 @@ To only start the react-app
 ```
 npm run client
 ```
+
+
 
 ## Override Default Port Numbers
 
