@@ -22,7 +22,6 @@ function welcome(stuff) {
     // Example of passing inline css JSX format
     const CARD_STYLE = {
         width: '100%',
-        'background-color': 'lightgrey',
     };
 
     return (
