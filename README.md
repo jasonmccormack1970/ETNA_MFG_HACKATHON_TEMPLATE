@@ -33,7 +33,7 @@ cd client
 npm install
 ```
 You can close your Git Bash terminal once the npm installer has completed.
-Now open the ETNA_MFG_HACKATHON_TEMPLATE folder in Visual Code
+Now open the ETNA_MFG_HACKATHON_TEMPLATE folder in Visual Code.
 Check that you have a node_modules folder in the root of your project and a second node_modules folder under the client folder.
 
 Now open a Git Bash terminal from within Visual Code and start your development environment.
