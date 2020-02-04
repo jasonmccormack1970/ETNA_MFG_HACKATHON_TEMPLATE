@@ -1,7 +1,7 @@
 {
-    "name": "etna_hackathone_template",
+    "name": "etna_hackathon_template",
     "version": "1.0.0",
-    "description": "Etna MFG Hackathone Template",
+    "description": "Etna MFG Hackathon Template",
     "author": "Jason McCormack",
     "license": "ISC",
     "scripts": {

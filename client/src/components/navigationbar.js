@@ -20,7 +20,7 @@ export const NavigationBar = () => (
         <ColoredLine color="red" />
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/">
-                <h5>Hackathone Environment</h5>
+                <h5>Hackathon Environment</h5>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
