@@ -1,12 +1,26 @@
-CREATE DATABASE todo2
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    CONNECTION LIMIT = -1;
-
 drop table if exists users;
-drop table if exists tasks; 
+drop table if exists tasks;
 
+CREATE SEQUENCE public.users_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+ALTER SEQUENCE public.users_id_seq
+    OWNER TO postgres;
+
+CREATE SEQUENCE public.tasks_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+ALTER SEQUENCE public.tasks_id_seq
+    OWNER TO postgres;
+	
 CREATE TABLE public.users
 (
     id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
@@ -28,14 +42,14 @@ ALTER TABLE public.users
 
 CREATE TABLE public.tasks
 (
-    id integer NOT NULL DEFAULT nextval('contests_id_seq'::regclass),
+    id integer NOT NULL DEFAULT nextval('tasks_id_seq'::regclass),
     title character varying(255) COLLATE pg_catalog."default" NOT NULL,
     notes text COLLATE pg_catalog."default",
     status character varying(10) COLLATE pg_catalog."default" NOT NULL DEFAULT 'draft'::character varying,
     created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     assigned_to integer NOT NULL,
-    CONSTRAINT contests_pkey PRIMARY KEY (id),
-    CONSTRAINT contests_created_by_fkey FOREIGN KEY (assigned_to)
+    CONSTRAINT tasks_pkey PRIMARY KEY (id),
+    CONSTRAINT tasks_created_by_fkey FOREIGN KEY (assigned_to)
         REFERENCES public.users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -49,13 +63,13 @@ ALTER TABLE public.tasks
 INSERT INTO public.users(
 	email, first_name, last_name, department, api_key )
 	VALUES 
-       (E'samer@agilelabs.com',E'Samer',E'Buna',E"R&D",E'4242'),
-       (E'creative@mind.com',E'Creative',E'Mind',E"DevOps",E'8578');
+       (E'samer@agilelabs.com',E'Samer',E'Buna',E'R&D',E'4242'),
+       (E'creative@mind.com',E'Creative',E'Mind',E'DevOps',E'8578');
   
 
 INSERT INTO public.tasks(
  title, notes, status, assigned_to)
 	VALUES  
-     (E'Test Task 827',E'This is a test task',E'draft',E'2');
-     (E'Test Task 413',E'This is a test task',E'draft',E'1');
+     (E'Test Task 827',E'This is a test task',E'draft',E'2'),
+     (E'Test Task 413',E'This is a test task',E'draft',E'1'),
      (E'Test Task 172',E'This is a test task',E'draft',E'1');
