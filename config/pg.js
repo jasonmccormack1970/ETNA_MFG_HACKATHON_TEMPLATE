@@ -1,7 +1,7 @@
 module.exports = {
     development: {
-        database: 'todo',
+        database: 'todo2',
         user: 'postgres',
-        password: 'root',
+        password: 'Manager1234',
     },
 };
