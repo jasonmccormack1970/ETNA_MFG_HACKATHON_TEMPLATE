@@ -1,5 +1,6 @@
 import React from 'react';
 import Hello from '../components/hello';
+import Actions from '../components/actions';
 
 // an example of creating an object which
 // is then sent to a react component as a "prop"
@@ -14,6 +15,7 @@ export default function test1() {
         <div>
             <h4 className="text-muted">TEST PAGE</h4>
             <Hello {...stuff} />
+            <Actions />
         </div>
     );
 }

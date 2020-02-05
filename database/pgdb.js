@@ -58,6 +58,18 @@ module.exports = (pgPool) => {
                 });
         },
 
+        getActions() {
+            return pgPool
+                .query(
+                    `
+        select * from action
+      `,
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows);
+                });
+        },
+
         getEngineer(name) {
             return pgPool
                 .query(
@@ -86,6 +98,18 @@ module.exports = (pgPool) => {
                 });
         },
 
+        getEngineers() {
+            return pgPool
+                .query(
+                    `
+        select * from engineer
+      `,
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows);
+                });
+        },
+
         getLaunchPlan(plan) {
             return pgPool
                 .query(
@@ -100,14 +124,12 @@ module.exports = (pgPool) => {
                 });
         },
 
-        getLaunchPlans(plans) {
+        getLaunchPlans() {
             return pgPool
                 .query(
                     `
         select * from launch_plan
-        where plan_name = ANY($1)
       `,
-                    [plans],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows);

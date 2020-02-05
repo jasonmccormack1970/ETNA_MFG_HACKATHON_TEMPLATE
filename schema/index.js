@@ -25,16 +25,7 @@ const LaunchPlanType = require('./types/launchplan');
 const LaunchActionType = require('./types/launchaction');
 const SkillLevelType = require('./types/skill_level');
 const ActionStatusType = require('./types/action_status');
-
-const ActionInputType = new GraphQLInputObjectType ({
-    name: "ActionInput",
-
-    fields: {
-        name: { type: new GraphQLNonNull(GraphQLString) },
-        description: { type: new GraphQLNonNull(GraphQLString) },
-        skillLevel: { type: new GraphQLNonNull(SkillLevelType) },
-    },
-});
+const ActionInputType = require('./types/action_input');
 
 const EngineerInputType = new GraphQLInputObjectType ({
     name: "EngineerInput",
@@ -134,10 +125,10 @@ const RootQueryType = new GraphQLObjectType({
         },
 
         // Resolvers for GraphQL queries
-        actions: {
+        action: {
             type: ActionType,
             description:
-                'Actions that are part of a launch plan',
+                'Action that is part of a launch plan',
             args: {
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
@@ -145,7 +136,26 @@ const RootQueryType = new GraphQLObjectType({
                 return pgdb(pgPool).getAction(args.key);
             },
         },
-        engineers: {
+        actionById: {
+            type: ActionType,
+            description:
+                'Actions that are part of a launch plan',
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLInt) },
+            },
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getActionById(args.id);
+            },
+        },
+        actions: {
+            type: new GraphQLList(ActionType),
+            description:
+                'Actions that are part of a launch plan',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getActions();
+            },
+        },
+        engineer: {
             type: EngineerType,
             description:
                 'Engineers that are part of a launch plan action',
@@ -154,6 +164,14 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: (obj, args, { pgPool }) => {
                 return pgdb(pgPool).getEngineer(args.key);
+            },
+        },
+        engineers: {
+            type: new GraphQLList(EngineerType),
+            description:
+                'Engineers that are part of a launch plan action',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getEngineers();
             },
         },
         launchPlan: {
@@ -165,6 +183,14 @@ const RootQueryType = new GraphQLObjectType({
             },
             resolve: (obj, args, { pgPool }) => {
                 return pgdb(pgPool).getLaunchPlan(args.key);
+            },
+        },
+        launchPlans: {
+            type: new GraphQLList(LaunchPlanType),
+            description:
+                'Launch plans to launch rockets',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getLaunchPlans();
             },
         },
         launchActions: {

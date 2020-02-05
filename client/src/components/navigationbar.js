@@ -37,8 +37,8 @@ export const NavigationBar = () => (
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
-
-                    <Nav.Link href="/empty">Empty Page</Nav.Link>
+                    <Nav.Link href="/actions">Actions</Nav.Link>
+                    <Nav.Link href="/engineers">Engineers</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

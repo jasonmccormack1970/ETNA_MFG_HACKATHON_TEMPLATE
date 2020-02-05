@@ -43,7 +43,7 @@ function welcome(stuff) {
                     <h5 className="card-title text-muted">
                         Simple GraphQL resolver
                     </h5>
-                    <p className="card-text">
+                    <div className="card-text">
                         <ApolloProvider client={client}>
                             <Query query={HELLO_QUERY}>
                                 {({ loading, error, data }) => {
@@ -57,7 +57,7 @@ function welcome(stuff) {
                                 }}
                             </Query>
                         </ApolloProvider>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
