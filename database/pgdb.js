@@ -44,6 +44,20 @@ module.exports = (pgPool) => {
                 });
         },
 
+        getActionById(id) {
+            return pgPool
+                .query(
+                    `
+        select * from action
+        where id = $1
+      `,
+                    [id],
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows[0]);
+                });
+        },
+
         getEngineer(name) {
             return pgPool
                 .query(
@@ -52,6 +66,20 @@ module.exports = (pgPool) => {
         where fullname = $1
       `,
                     [name],
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows[0]);
+                });
+        },
+
+        getEngineerById(id) {
+            return pgPool
+                .query(
+                    `
+        select * from engineer
+        where id = $1
+      `,
+                    [id],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows[0]);
@@ -100,14 +128,14 @@ module.exports = (pgPool) => {
                 });
         },
 
-        getLaunchActions(ids) {
+        getLaunchActions(launchPlan) {
             return pgPool
                 .query(
                     `
         select * from launch_action
-        where id = ANY ($1)
+        where id = $1
       `,
-                    [ids],
+                    [launchPlan.id],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows);
@@ -144,30 +172,36 @@ module.exports = (pgPool) => {
                 });
         },
 
-        addNewLaunchPlan({ name, details, dueDate }) {
+        addNewLaunchPlan({ name, details, launchDate }) {
             return pgPool
                 .query(
                     `
-                    insert into launch_plan (plan_name, details, due_date)
+                    insert into launch_plan (plan_name, details, launch_date)
                     values ($1, $2, $3)
                     returning *
                     `,
-                    [name, details, dueDate],
+                    [name, details, launchDate],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows[0]);
                 });
         },
 
-        addNewLaunchAction({ description, dueDate, status, actionId, assignedTo, planId }) {
+        addNewLaunchAction({ description, dueDate, status, actionName, engineerName, planName }) {
+            if (!status || status === 0) {
+                status = 1;
+            }
             return pgPool
                 .query(
                     `
                     insert into launch_action (description, due_date, status, action_id, assigned_to, plan_id )
-                    values ($1, $2, $3, $4, $5, $6)
+                    values ($1, $2, $3, 
+                        (select id from action where fullname = $4), 
+                        (select id from engineer where fullname = $5), 
+                        (select id from launch_plan where plan_name = $6))
                     returning *
                     `,
-                    [description, dueDate, status, actionId, assignedTo, planId],
+                    [description, dueDate, status, actionName, engineerName, planName],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows[0]);

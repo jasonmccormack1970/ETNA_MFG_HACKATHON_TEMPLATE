@@ -2,6 +2,7 @@
 const {
     GraphQLSchema,
     GraphQLObjectType,
+    GraphQLInputObjectType,
     GraphQLString,
     GraphQLNonNull,
     GraphQLList,
@@ -24,6 +25,51 @@ const LaunchPlanType = require('./types/launchplan');
 const LaunchActionType = require('./types/launchaction');
 const SkillLevelType = require('./types/skill_level');
 const ActionStatusType = require('./types/action_status');
+
+const ActionInputType = new GraphQLInputObjectType ({
+    name: "ActionInput",
+
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        skillLevel: { type: new GraphQLNonNull(SkillLevelType) },
+    },
+});
+
+const EngineerInputType = new GraphQLInputObjectType ({
+    name: "EngineerInput",
+
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        jobTitle: { type: new GraphQLNonNull(GraphQLString) },
+        department: { type: new GraphQLNonNull(GraphQLString) },
+        skillLevel: { type: new GraphQLNonNull(SkillLevelType) },
+    },
+});
+
+const LaunchActionInputType = new GraphQLInputObjectType ({
+    name: "LaunchActionInput",
+
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        dueDate: { type: new GraphQLNonNull(GraphQLString) },
+        planName: { type: new GraphQLNonNull(GraphQLString) },
+        actionName: { type: new GraphQLNonNull(GraphQLString) },
+        engineerName: { type: new GraphQLNonNull(GraphQLString) },
+        status: { type: ActionStatusType },
+    }
+});
+
+const LaunchPlanInputType = new GraphQLInputObjectType ({
+    name: "LaunchPlanInput",
+
+    fields: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        details: { type: new GraphQLNonNull(GraphQLString) },
+        launchDate: { type: new GraphQLNonNull(GraphQLString) },
+    },
+});
 
 // The root query type is where in the data graph begins
 const RootQueryType = new GraphQLObjectType({
@@ -110,7 +156,7 @@ const RootQueryType = new GraphQLObjectType({
                 return pgdb(pgPool).getEngineer(args.key);
             },
         },
-        launchPlans: {
+        launchPlan: {
             type: LaunchPlanType,
             description:
                 'Launch plans to launch rockets',
@@ -118,7 +164,7 @@ const RootQueryType = new GraphQLObjectType({
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: (obj, args, { pgPool }) => {
-                return pgdb(pgPool).getLaunchPlans(args.key);
+                return pgdb(pgPool).getLaunchPlan(args.key);
             },
         },
         launchActions: {
@@ -129,7 +175,7 @@ const RootQueryType = new GraphQLObjectType({
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
             resolve: (obj, args, { pgPool }) => {
-                return pgdb(pgPool).getLaunchAction(args.key);
+                return pgdb(pgPool).getLaunchActions(obj);
             },
         },
     },
@@ -160,51 +206,40 @@ const RootMutationType = new GraphQLObjectType({
             type: ActionType,
             description: 'Add a new action to the database',
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                description: { type: new GraphQLNonNull(GraphQLString) },
-                skillLevel: { type: new GraphQLNonNull(SkillLevelType) },
+                input: { type: new GraphQLNonNull(ActionInputType) },
             },
-            resolve(obj, args, { pgPool } ) {
-                return pgdb(pgPool).addNewAction(args);
+            resolve(obj, { input }, { pgPool } ) {
+                return pgdb(pgPool).addNewAction(input);
             },
         },
         addNewEngineer: {
             type: EngineerType,
             description: 'Add a new engineer to the database',
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                jobTitle: { type: new GraphQLNonNull(GraphQLString) },
-                department: { type: new GraphQLNonNull(GraphQLString) },
-                skillLevel: { type: new GraphQLNonNull(SkillLevelType) },
+                input: { type: new GraphQLNonNull(EngineerInputType) },
             },
-            resolve(obj, args, { pgPool } ) {
-                return pgdb(pgPool).addNewEngineer(args);
+            resolve(obj, { input }, { pgPool } ) {
+                return pgdb(pgPool).addNewEngineer(input);
             },
         },
         addNewLaunchPlan: {
             type: LaunchPlanType,
             description: 'Add a new launch plan to the database',
             args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                details: { type: new GraphQLNonNull(GraphQLString) },
-                date: { type: new GraphQLNonNull(GraphQLString) },
+                input: { type: new GraphQLNonNull(LaunchPlanInputType) },
             },
-            resolve(obj, args, { pgPool } ) {
-                return pgdb(pgPool).addNewLaunchPlan(args);
+            resolve(obj, { input }, { pgPool } ) {
+                return pgdb(pgPool).addNewLaunchPlan(input);
             },
         },
         addNewLaunchPlanAction: {
             type: LaunchActionType,
             description: 'Add a new launch plan action to the database',
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                description: { type: new GraphQLNonNull(GraphQLString) },
-                dueDate: { type: new GraphQLNonNull(GraphQLString) },
-                planId: { type: new GraphQLNonNull(GraphQLInt) },
-                status: { type: ActionStatusType },
+            args: { 
+                input: { type: new GraphQLNonNull(LaunchActionInputType) },
             },
-            resolve(obj, args, { pgPool } ) {
-                return pgdb(pgPool).addNewLaunchAction(args);
+            resolve(obj, { input }, { pgPool } ) {
+                return pgdb(pgPool).addNewLaunchAction(input);
             },
         },
     },

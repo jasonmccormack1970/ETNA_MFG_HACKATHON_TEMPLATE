@@ -7,17 +7,19 @@ const {
 } = require('graphql');
 const LaunchAction = require('./launchaction');
 
+const pgdb = require('../../database/pgdb');
+
 module.exports = new GraphQLObjectType({
     name: 'launchPlan',
     fields: {
         id: { type: GraphQLID },
-        name: { type: new GraphQLNonNull(GraphQLString) },
+        planName: { type: new GraphQLNonNull(GraphQLString) },
         details: { type: GraphQLString },
         launchDate: { type: GraphQLString },
         launchActions: { 
             type: new GraphQLList(LaunchAction),
             resolve(obj, args, { pgPool }) {
-                return pgdb(pgPool).getLaunchAction(obj);
+                return pgdb(pgPool).getLaunchActions(obj);
             },
          }
     },
