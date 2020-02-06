@@ -3,7 +3,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { NavigationBar } from './components/navigationbar';
 import Home from './pages/home';
-import Test1 from './pages/test1';
+import Example from './pages/example';
 import Empty from './pages/empty';
 import MissingRoute from './pages/MissingRoute';
 
@@ -17,7 +17,7 @@ function App(message) {
                     <Router>
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <Route exact path="/test1" component={Test1} />
+                            <Route exact path="/example" component={Example} />
                             <Route exact path="/empty" component={Empty} />
                             <Route component={MissingRoute} />
                         </Switch>

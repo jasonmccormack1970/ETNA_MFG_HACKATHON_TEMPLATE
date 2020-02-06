@@ -11,10 +11,10 @@ const exampeData = {
     someMore: <div> 4 * 100 = {4 * 100}</div>, //Inline html and jsx
 };
 
-export default function test1() {
+export default function example() {
     return (
         <div>
-            <h4 className="text-muted">TEST PAGE</h4>
+            <h4 className="text-muted">EXAMPLE PAGE</h4>
             <Hello {...exampeData} />
             <Launches />
         </div>

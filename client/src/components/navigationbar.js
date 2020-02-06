@@ -26,7 +26,7 @@ export const NavigationBar = () => (
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/test1">Test Page</Nav.Link>
+                    <Nav.Link href="/example">Example Page</Nav.Link>
                     <NavDropdown title="Servers" id="basic-nav-dropdown">
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="http://localhost:3600/graphql">
