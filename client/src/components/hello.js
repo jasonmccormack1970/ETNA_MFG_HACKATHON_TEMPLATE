@@ -3,7 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Card, Button } from 'react-bootstrap';
+import { onError } from 'apollo-link-error';
 
 function welcome(stuff) {
     //
@@ -11,17 +11,19 @@ function welcome(stuff) {
         uri: 'http://localhost:3600/graphql',
     });
 
-    //    const HELLO_QUERY = gql`
-    //      query HelloQuery {
-    //          hello
-    //      }
-    //     `;
-
     const HELLO_QUERY = gql(stuff.message1);
 
     // Example of passing inline css JSX format
     const CARD_STYLE = {
         width: '100%',
+    };
+
+    const P_ERROR = {
+        color: 'Red',
+    };
+
+    const P_LOADING = {
+        color: 'blue',
     };
 
     return (
@@ -48,10 +50,30 @@ function welcome(stuff) {
                             <Query query={HELLO_QUERY}>
                                 {({ loading, error, data }) => {
                                     if (loading) {
-                                        return <h4>Loading Data ......</h4>;
+                                        return (
+                                            <p style={P_LOADING}>
+                                                Loading Data Please Wait ...
+                                            </p>
+                                        );
                                     }
+
+                                    // catch apollo exceptions example network issues
                                     if (error) {
-                                        return console.log(error);
+                                        return (
+                                            <p style={P_ERROR}>
+                                                {error.message}
+                                            </p>
+                                        );
+                                    }
+
+                                    // catch graphql exceptions
+                                    if (onError.message == '') {
+                                        return (
+                                            <p style={P_ERROR}>
+                                                There is a problem with your
+                                                GraphQL query
+                                            </p>
+                                        );
                                     }
                                     return <p> {data.hello} </p>;
                                 }}
