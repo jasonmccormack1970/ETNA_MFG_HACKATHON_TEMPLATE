@@ -1,5 +1,6 @@
 import React from 'react';
 import Hello from '../components/hello';
+import Launches from '../components/launches';
 import { getDate } from '../utils/utils';
 
 // an example of creating an object which
@@ -7,7 +8,7 @@ import { getDate } from '../utils/utils';
 const exampeData = {
     message1: 'query HelloQuery {hello}', // Grpahql query
     otherData: getDate(), // Function
-    someMore: <p> 4 * 100 = {4 * 100}</p>, //Inline html and jsx
+    someMore: <div> 4 * 100 = {4 * 100}</div>, //Inline html and jsx
 };
 
 export default function test1() {
@@ -15,6 +16,7 @@ export default function test1() {
         <div>
             <h4 className="text-muted">TEST PAGE</h4>
             <Hello {...exampeData} />
+            <Launches />
         </div>
     );
 }

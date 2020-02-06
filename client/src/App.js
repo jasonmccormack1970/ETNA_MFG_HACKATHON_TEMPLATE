@@ -12,7 +12,7 @@ function App(message) {
         <div>
             <React.Fragment>
                 <Container>
-                    <p>{message.text}</p>
+                    <div>{message.text}</div>
                     <NavigationBar />
                     <Router>
                         <Switch>

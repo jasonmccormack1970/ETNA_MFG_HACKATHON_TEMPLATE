@@ -33,10 +33,10 @@ function welcome(stuff) {
                     <h5 className="card-title text-muted">
                         An example of data passed from the page into a component
                     </h5>
-                    <p className="card-text">
+                    <div className="card-text">
                         {stuff.otherData}
                         {stuff.someMore}
-                    </p>
+                    </div>
                 </div>
             </div>
 
@@ -45,41 +45,40 @@ function welcome(stuff) {
                     <h5 className="card-title text-muted">
                         Simple GraphQL resolver
                     </h5>
-                    <p className="card-text">
+                    <div className="card-text">
                         <ApolloProvider client={client}>
                             <Query query={HELLO_QUERY}>
                                 {({ loading, error, data }) => {
                                     if (loading) {
                                         return (
-                                            <p style={P_LOADING}>
+                                            <div style={P_LOADING}>
                                                 Loading Data Please Wait ...
-                                            </p>
+                                            </div>
                                         );
                                     }
-
                                     // catch apollo exceptions example network issues
                                     if (error) {
                                         return (
-                                            <p style={P_ERROR}>
+                                            <div style={P_ERROR}>
                                                 {error.message}
-                                            </p>
+                                            </div>
+                                        );
+                                    }
+                                    // catch graphql exceptions
+                                    if (onError.message === '') {
+                                        return (
+                                            <div style={P_ERROR}>
+                                                There is a problem with your
+                                                GraphQL query
+                                            </div>
                                         );
                                     }
 
-                                    // catch graphql exceptions
-                                    if (onError.message == '') {
-                                        return (
-                                            <p style={P_ERROR}>
-                                                There is a problem with your
-                                                GraphQL query
-                                            </p>
-                                        );
-                                    }
-                                    return <p> {data.hello} </p>;
+                                    return <div> {data.hello} </div>;
                                 }}
                             </Query>
                         </ApolloProvider>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ export default function home() {
             <div>
                 <h5 className="text-muted">Manufacturing ‘Hackathon’</h5>
                 <h6 className="lead">Background</h6>
-                <p>
+                <div>
                     SpaceX is a company that launches rockets into space. They
                     have had successes and failures. In order to increase the
                     successes, they realise they need a plan for each rocket
@@ -15,7 +15,7 @@ export default function home() {
                     and detail all necessary actions for a successful launch.
                     Each action would include a due date, responsible person and
                     the level of completion.
-                </p>
+                </div>
                 <h6 className="lead">Use Cases</h6>
                 <ul>
                     <li>
