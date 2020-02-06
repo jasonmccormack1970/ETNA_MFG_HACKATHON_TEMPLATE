@@ -37,7 +37,7 @@ function launches() {
                 <div className="card">
                     <div className="card-body" style={CARD_STYLE}>
                         <h5 className="card-title text-muted">
-                            An example of data read from a public API
+                            Example of reading data from a public API
                         </h5>
                         <ApolloProvider client={client}>
                             <Query query={LAUNCHES_QUERY}>
