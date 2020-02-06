@@ -9,7 +9,7 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
-const json_server_config = require('../json-server');
+const json_server_config = require('../config/jsonserver_config.json');
 
 let jsonServerPort = json_server_config.port;
 
