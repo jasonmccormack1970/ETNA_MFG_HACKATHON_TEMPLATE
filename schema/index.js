@@ -10,9 +10,7 @@ const {
 
 const axios = require('axios');
 const json_server_config = require('../config/jsonserver_config.json');
-
-let jsonServerPort = json_server_config.port;
-
+const jsonServerPort = json_server_config.port;
 const pgdb = require('../database/pgdb');
 const MeType = require('./types/me');
 const LaunchType = require('./types/launch');

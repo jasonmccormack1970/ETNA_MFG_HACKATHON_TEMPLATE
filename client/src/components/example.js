@@ -4,38 +4,26 @@ import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { onError } from 'apollo-link-error';
+import { P_LOADING, P_ERROR, CARD_STYLE } from '../styles/jsx_styles';
 
-function welcome(stuff) {
+function example(exampleData) {
     //
     const client = new ApolloClient({
         uri: 'http://localhost:3600/graphql',
     });
 
-    const HELLO_QUERY = gql(stuff.message1);
-
-    // Example of passing inline css JSX format
-    const CARD_STYLE = {
-        width: '100%',
-    };
-
-    const P_ERROR = {
-        color: 'Red',
-    };
-
-    const P_LOADING = {
-        color: 'blue',
-    };
+    const HELLO_QUERY = gql(exampleData.message1);
 
     return (
         <div className="container">
             <div className="card">
                 <div className="card-body" style={CARD_STYLE}>
                     <h5 className="card-title text-muted">
-                        An example of data passed from the page into a component
+                        Data passed into a component
                     </h5>
-                    <div className="card-text">
-                        {stuff.otherData}
-                        {stuff.someMore}
+                    <div className="card-text" style={P_LOADING}>
+                        {exampleData.otherData}
+                        {exampleData.someMore}
                     </div>
                 </div>
             </div>
@@ -43,7 +31,7 @@ function welcome(stuff) {
             <div className="card">
                 <div className="card-body" style={CARD_STYLE}>
                     <h5 className="card-title text-muted">
-                        Simple GraphQL resolver
+                        GraphQL resolver returning text
                     </h5>
                     <div className="card-text">
                         <ApolloProvider client={client}>
@@ -73,8 +61,12 @@ function welcome(stuff) {
                                             </div>
                                         );
                                     }
-
-                                    return <div> {data.hello} </div>;
+                                    return (
+                                        <div style={P_LOADING}>
+                                            {' '}
+                                            {data.hello}{' '}
+                                        </div>
+                                    );
                                 }}
                             </Query>
                         </ApolloProvider>
@@ -85,4 +77,4 @@ function welcome(stuff) {
     );
 }
 
-export default welcome;
+export default example;
