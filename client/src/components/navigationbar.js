@@ -32,7 +32,7 @@ export const NavigationBar = () => (
                         <NavDropdown.Item href="http://localhost:3600/graphql">
                             GraphQL Server
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="http://localhost:3700">
+                        <NavDropdown.Item href="http://localhost:3000">
                             Mock API Server
                         </NavDropdown.Item>
                         <NavDropdown.Item href="https://api.spacexdata.com/v3/launches">
