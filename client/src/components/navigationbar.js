@@ -35,6 +35,9 @@ export const NavigationBar = () => (
                         <NavDropdown.Item href="http://localhost:3700">
                             Mock API Server
                         </NavDropdown.Item>
+                        <NavDropdown.Item href="https://api.spacexdata.com/v3/launches">
+                            SpaceX Public API
+                        </NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
 
