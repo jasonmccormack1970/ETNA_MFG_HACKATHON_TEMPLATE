@@ -3,16 +3,18 @@ const {
     GraphQLID,
     GraphQLString,
     GraphQLNonNull,
+    GraphQLInt,
 } = require('graphql');
 
 const TaskStatusType = require('./task_status');
 
 module.exports = new GraphQLObjectType({
-    name: 'task',
+    name: 'taskType',
     fields: {
         id: { type: GraphQLID },
         title: { type: new GraphQLNonNull(GraphQLString) },
         notes: { type: GraphQLString },
-        status: { type: new GraphQLNonNull(TaskStatusType) },
+        status: { type: GraphQLString },
+        // status: { type: new GraphQLNonNull(TaskStatusType) },
     },
 });

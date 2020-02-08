@@ -9,12 +9,14 @@ const {
 } = require('graphql');
 
 const axios = require('axios');
-const json_server_config = require('../config/jsonserver_config.json');
+const json_server_config = require('../json-server.json');
 const jsonServerPort = json_server_config.port;
 const pgdb = require('../database/pgdb');
 const MeType = require('./types/me');
 const LaunchType = require('./types/launch');
 const CustomerType = require('./types/customer');
+const UserType = require('./types/users');
+const TasksType = require('./types/task');
 
 // The root query type is where in the data graph begins
 const RootQueryType = new GraphQLObjectType({
@@ -24,25 +26,28 @@ const RootQueryType = new GraphQLObjectType({
         hello: {
             type: GraphQLString,
             description: 'The mandatory hello world example....',
-            resolve: () =>
-                'Hello World - This message has come from your GraphQL server',
+            resolve: () => 'Hello World - This message has come from your GraphQL server',
         },
 
         launch_info: {
             type: new GraphQLList(LaunchType),
-            description:
-                'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
+            description: 'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
             resolve: (obj, args) => {
-                return axios
-                    .get('https://api.spacexdata.com/v3/launches')
-                    .then((res) => res.data);
+                return axios.get('https://api.spacexdata.com/v3/launches').then((res) => res.data);
+            },
+        },
+
+        Users: {
+            type: new GraphQLList(UserType),
+            description: 'list all users from from ProstgresDB table',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getAllUsers();
             },
         },
 
         about_Me: {
             type: MeType,
-            description:
-                'Infomation about me (logged in??) and to do list from ProstgresDB & MongoBD',
+            description: 'Infomation about me (logged in??) and to do list from ProstgresDB',
             args: {
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
@@ -51,26 +56,29 @@ const RootQueryType = new GraphQLObjectType({
             },
         },
 
+        tasks: {
+            type: new GraphQLList(TasksType),
+            description: 'list all users from from ProstgresDB tableB',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getTasks();
+            },
+        },
+
         customer: {
             type: CustomerType,
-            description:
-                'Return selected Customer data from a locally hosted mock api',
+            description: 'Return selected Customer data from a locally hosted mock api',
             args: {
                 id: { type: GraphQLString },
             },
             resolve(parentValue, args) {
                 return axios
-                    .get(
-                        `http://localhost:${jsonServerPort}/customers/` +
-                            args.id,
-                    )
+                    .get(`http://localhost:${jsonServerPort}/customers/` + args.id)
                     .then((res) => res.data);
             },
         },
         customers: {
             type: new GraphQLList(CustomerType),
-            description:
-                'Return all Customer data from a locally hosted mock api',
+            description: 'Return all Customer data from a locally hosted mock api',
             resolve(parentValue, args) {
                 return axios
                     .get(`http://localhost:${jsonServerPort}/customers`)

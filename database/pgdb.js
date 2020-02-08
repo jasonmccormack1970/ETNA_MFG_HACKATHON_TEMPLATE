@@ -2,6 +2,12 @@ const humps = require('humps');
 
 module.exports = (pgPool) => {
     return {
+        getAllUsers() {
+            return pgPool.query(`select * from users`).then((res) => {
+                return humps.camelizeKeys(res.rows);
+            });
+        },
+
         getUser(apiKey) {
             return pgPool
                 .query(
@@ -16,7 +22,13 @@ module.exports = (pgPool) => {
                 });
         },
 
-        getTasks(user) {
+        getTasks() {
+            return pgPool.query(`select * from tasks`).then((res) => {
+                return humps.camelizeKeys(res.rows);
+            });
+        },
+
+        getTasksold(user) {
             return pgPool
                 .query(
                     `

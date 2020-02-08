@@ -26,13 +26,19 @@ export const NavigationBar = () => (
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/example">Example Page</Nav.Link>
+
+                    <NavDropdown title="Demo Pages" id="basic-nav-dropdown">
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/example">Example Page 1</NavDropdown.Item>
+                        <NavDropdown.Item href="/example2">Example Page 2</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                    </NavDropdown>
                     <NavDropdown title="Servers" id="basic-nav-dropdown">
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="http://localhost:3600/graphql">
                             GraphQL Server
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="http://localhost:3000">
+                        <NavDropdown.Item href="http://localhost:3700">
                             Mock API Server
                         </NavDropdown.Item>
                         <NavDropdown.Item href="https://api.spacexdata.com/v3/launches">

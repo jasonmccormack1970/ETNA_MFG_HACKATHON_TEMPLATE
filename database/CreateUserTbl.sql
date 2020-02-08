@@ -63,13 +63,20 @@ ALTER TABLE public.tasks
 INSERT INTO public.users(
 	email, first_name, last_name, department, api_key )
 	VALUES 
-       (E'samer@agilelabs.com',E'Samer',E'Buna',E'R&D',E'4242'),
-       (E'creative@mind.com',E'Creative',E'Mind',E'DevOps',E'8578');
-  
+        (E'fiona.hodges@manf.hackathon.test',E'Fiona',E'Hodges',E'Navigation',E'010'),
+        (E'adrian.hill@manf.hackathon.test',E'Adrian',E'Hill',E'Environmental and Consumables',E'020'),
+        (E'jake.edmunds@manf.hackathon.test',E'Jake',E'Edmunds',E'Payload Deployment',E'030'),
+        (E'wendy.ferguson@manf.hackathon.test',E'Wendy',E'Ferguson',E'Ground Control',E'040'),
+        (E'commolly.morrison@manf.hackathon.test',E'Molly',E'Morrison',E'Payload Operations',E'050'),
+        (E'emily.randall@manf.hackathon.test',E'Emily',E'Randall',E'Flight research',E'060'),
+        (E'gavin.walker@manf.hackathon.test',E'Gavin',E'Walker',E'Illumination Engineering',E'070'),
+        (E'faith.anderson@manf.hackathon.test',E'Faith',E'Anderson',E'Propulsion technology',E'080'),
+        (E'ian.rutherford@manf.hackathon.test',E'Ian',E'Rutherford',E'Flight research',E'090'),
+        (E'stephanie.dickens@manf.hackahon.test',E'Stephanie',E'Dickens',E'Instrumentation and Communications',E'100');
 
 INSERT INTO public.tasks(
  title, notes, status, assigned_to)
 	VALUES  
-     (E'Test Task 827',E'This is a test task',E'draft',E'2'),
-     (E'Test Task 413',E'This is a test task',E'draft',E'1'),
-     (E'Test Task 172',E'This is a test task',E'draft',E'1');
+     (E'Pack air freshener',E'The nice smelling one',E'Pending',E'2'),
+     (E'Fill fuel tanks',E'Remeber to use unleaded fuel',E'Pending',E'8'),
+     (E'Put space maps and good food guide in glove compartment',E'',E'Pending',E'1');
