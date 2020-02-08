@@ -6,11 +6,14 @@ import { Query } from 'react-apollo';
 import { Card, ListGroup } from 'react-bootstrap';
 import { onError } from 'apollo-link-error';
 import { P_LOADING, P_ERROR } from '../styles/jsx_styles';
+import { loggedInUser } from '../utils/utils';
 
+// Simulate a user is signed in
+let luser = loggedInUser();
 // important to use back ticks
-const ME_QUERY = gql`
+let ME_QUERY = gql`
     query MeQuery {
-        about_Me(key: "060") {
+        about_Me(key: "${luser}") {
             firstName
             lastName
             fullName
@@ -56,7 +59,7 @@ function me() {
                                             {data.about_Me.fullName}
                                         </Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
-                                            {data.about_Me.department}
+                                            (id = {data.about_Me.id}) {data.about_Me.department}
                                         </Card.Subtitle>
                                         <Card.Text>
                                             <ListGroup variant="flush">

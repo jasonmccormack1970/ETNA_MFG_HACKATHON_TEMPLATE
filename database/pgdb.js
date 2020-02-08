@@ -13,7 +13,7 @@ module.exports = (pgPool) => {
                 .query(
                     `
         select * from users
-        where api_key = $1
+        where id = $1
       `,
                     [apiKey],
                 )
@@ -22,20 +22,24 @@ module.exports = (pgPool) => {
                 });
         },
 
+        getUserTasks(apiKey) {
+            return pgPool.query(`select * from tasks where id = $1`, [apiKey]).then((res) => {
+                return humps.camelizeKeys(res.rows);
+            });
+        },
         getTasks() {
             return pgPool.query(`select * from tasks`).then((res) => {
                 return humps.camelizeKeys(res.rows);
             });
         },
-
-        getTasksold(user) {
+        getUserTasks(user) {
             return pgPool
                 .query(
                     `
         select * from tasks
-        where assigned_to = $1
+        where assignedto = $1
       `,
-                    [user.id],
+                    [user],
                 )
                 .then((res) => {
                     return humps.camelizeKeys(res.rows);

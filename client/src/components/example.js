@@ -16,11 +16,9 @@ function example(exampleData) {
 
     return (
         <div className="container">
-            <div className="card">
+            <div className="card" style={{ marginTop: '10px' }}>
                 <div className="card-body" style={CARD_STYLE}>
-                    <h5 className="card-title text-muted">
-                        Data passed into a component
-                    </h5>
+                    <h5 className="card-title text-muted">Data passed into a component</h5>
                     <div className="card-text" style={P_LOADING}>
                         {exampleData.otherData}
                         {exampleData.someMore}
@@ -28,11 +26,9 @@ function example(exampleData) {
                 </div>
             </div>
 
-            <div className="card">
+            <div className="card" style={{ marginTop: '10px' }}>
                 <div className="card-body" style={CARD_STYLE}>
-                    <h5 className="card-title text-muted">
-                        GraphQL resolver returning text
-                    </h5>
+                    <h5 className="card-title text-muted">GraphQL resolver returning text</h5>
                     <div className="card-text">
                         <ApolloProvider client={client}>
                             <Query query={HELLO_QUERY}>
@@ -46,27 +42,17 @@ function example(exampleData) {
                                     }
                                     // catch apollo exceptions example network issues
                                     if (error) {
-                                        return (
-                                            <div style={P_ERROR}>
-                                                {error.message}
-                                            </div>
-                                        );
+                                        return <div style={P_ERROR}>{error.message}</div>;
                                     }
                                     // catch graphql exceptions
                                     if (onError.message === '') {
                                         return (
                                             <div style={P_ERROR}>
-                                                There is a problem with your
-                                                GraphQL query
+                                                There is a problem with your GraphQL query
                                             </div>
                                         );
                                     }
-                                    return (
-                                        <div style={P_LOADING}>
-                                            {' '}
-                                            {data.hello}{' '}
-                                        </div>
-                                    );
+                                    return <div style={P_LOADING}> {data.hello} </div>;
                                 }}
                             </Query>
                         </ApolloProvider>

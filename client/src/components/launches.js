@@ -37,7 +37,7 @@ function launches() {
 
     return (
         <div>
-            <div className="container">
+            <div className="container" style={{ marginTop: '10px' }}>
                 <div className="card">
                     <div className="card-body" style={CARD_STYLE}>
                         <h5 className="card-title text-muted">
@@ -68,28 +68,34 @@ function launches() {
                                     }
 
                                     return (
-                                        <ul>
-                                            {data.launch_info.map((item) => (
-                                                <li key={item.flight_number}>
-                                                    <h6>
-                                                        Mission Name:{' '}
-                                                        <span
-                                                            className={classNames({
-                                                                'text-success': item.launch_success,
-                                                                'text-danger': !item.launch_success,
-                                                            })}
-                                                        >
-                                                            {item.mission_name} - {item.launch_year}
-                                                        </span>
-                                                    </h6>
-                                                    <p>
-                                                        Launched from :
-                                                        {item.launch_site.site_name_long}
-                                                    </p>
-                                                    <p>Rocket used: {item.rocket.rocket_name}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <div>
+                                            <ul>
+                                                {data.launch_info.map((item) => (
+                                                    <li key={item.flight_number}>
+                                                        <h6>
+                                                            Mission Name:{' '}
+                                                            <span
+                                                                className={classNames({
+                                                                    'text-success':
+                                                                        item.launch_success,
+                                                                    'text-danger': !item.launch_success,
+                                                                })}
+                                                            >
+                                                                {item.mission_name} -{' '}
+                                                                {item.launch_year}
+                                                            </span>
+                                                        </h6>
+                                                        <p>
+                                                            Launched from :
+                                                            {item.launch_site.site_name_long}
+                                                        </p>
+                                                        <p>
+                                                            Rocket used: {item.rocket.rocket_name}
+                                                        </p>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     );
                                 }}
                             </Query>

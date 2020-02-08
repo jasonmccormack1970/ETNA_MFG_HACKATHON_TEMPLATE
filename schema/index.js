@@ -64,6 +64,17 @@ const RootQueryType = new GraphQLObjectType({
             },
         },
 
+        user_tasks: {
+            type: new GraphQLList(TasksType),
+            description: 'list all users from from ProstgresDB tableB',
+            args: {
+                key: { type: new GraphQLNonNull(GraphQLString) },
+            },
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getUserTasks(args.key);
+            },
+        },
+
         customer: {
             type: CustomerType,
             description: 'Return selected Customer data from a locally hosted mock api',

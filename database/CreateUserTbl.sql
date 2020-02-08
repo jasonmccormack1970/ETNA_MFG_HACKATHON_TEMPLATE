@@ -47,9 +47,9 @@ CREATE TABLE public.tasks
     notes text COLLATE pg_catalog."default",
     status character varying(10) COLLATE pg_catalog."default" NOT NULL DEFAULT 'draft'::character varying,
     created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    assigned_to integer NOT NULL,
+    assignedto integer NOT NULL,
     CONSTRAINT tasks_pkey PRIMARY KEY (id),
-    CONSTRAINT tasks_created_by_fkey FOREIGN KEY (assigned_to)
+    CONSTRAINT tasks_created_by_fkey FOREIGN KEY (assignedto)
         REFERENCES public.users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -75,7 +75,7 @@ INSERT INTO public.users(
         (E'stephanie.dickens@manf.hackahon.test',E'Stephanie',E'Dickens',E'Instrumentation and Communications',E'100');
 
 INSERT INTO public.tasks(
- title, notes, status, assigned_to)
+ title, notes, status, assignedto)
 	VALUES  
      (E'Pack air freshener',E'The nice smelling one',E'Pending',E'2'),
      (E'Fill fuel tanks',E'Remeber to use unleaded fuel',E'Pending',E'8'),

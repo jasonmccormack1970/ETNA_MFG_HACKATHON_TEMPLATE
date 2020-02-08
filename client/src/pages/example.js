@@ -14,7 +14,7 @@ const exampeData = {
 export default function example() {
     return (
         <div>
-            <h4 className="text-muted">EXAMPLE PAGE</h4>
+            <h4 className="text-muted">EXAMPLE PAGE 1</h4>
             {<Example {...exampeData} />}
             <Launches />
         </div>
