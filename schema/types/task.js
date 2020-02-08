@@ -15,6 +15,7 @@ module.exports = new GraphQLObjectType({
         title: { type: new GraphQLNonNull(GraphQLString) },
         notes: { type: GraphQLString },
         status: { type: GraphQLString },
+        assignedto: { type: new GraphQLNonNull(GraphQLInt) },
         // status: { type: new GraphQLNonNull(TaskStatusType) },
     },
 });
