@@ -29,8 +29,15 @@ export const NavigationBar = () => (
 
                     <NavDropdown title="Demo Pages" id="basic-nav-dropdown">
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="/example">Example Page 1</NavDropdown.Item>
-                        <NavDropdown.Item href="/example2">Example Page 2</NavDropdown.Item>
+                        <NavDropdown.Item href="/example">
+                            Example Page 1 - Public API
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="/example2">
+                            Example Page 2 - PostgresDB
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="/example3">
+                            Example Page 3 - Mock API
+                        </NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
                     <NavDropdown title="Servers" id="basic-nav-dropdown">

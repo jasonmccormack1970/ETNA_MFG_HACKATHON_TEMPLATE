@@ -1,5 +1,5 @@
 import React from 'react';
-import Example from '../components/example';
+import Example from '../components/helloworld';
 import Launches from '../components/launches';
 import { getDate } from '../utils/utils';
 
@@ -15,7 +15,6 @@ export default function example() {
     return (
         <div>
             <h4 className="text-muted">EXAMPLE PAGE 1</h4>
-            {<Example {...exampeData} />}
             <Launches />
         </div>
     );

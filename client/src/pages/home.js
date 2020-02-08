@@ -1,9 +1,20 @@
 import React from 'react';
+import { getDate } from '../utils/utils';
+import HelloWorld from '../components/helloworld';
+
+// an example of creating an object which
+// is then sent to a react component as a "prop"
+const exampeData = {
+    message1: 'query HelloQuery {hello}', // A Grpahql query
+    otherData: getDate(), // A Function
+    someMore: <div> 4 * 100 = {4 * 100}</div>, // Inline html and jsx
+};
 
 export default function home() {
     return (
         <div>
             <h4 className="text-muted">HOME PAGE</h4>
+            {<HelloWorld {...exampeData} />}
             <div>
                 <div style={{ padding: '20px' }}>
                     <h6 className="lead">Background</h6>

@@ -5,6 +5,7 @@ import { NavigationBar } from './components/navigationbar';
 import Home from './pages/home';
 import Example from './pages/example';
 import Example2 from './pages/example2';
+import Example3 from './pages/example3';
 import Empty from './pages/empty';
 import MissingRoute from './pages/MissingRoute';
 
@@ -20,6 +21,7 @@ function App(message) {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/example" component={Example} />
                             <Route exact path="/example2" component={Example2} />
+                            <Route exact path="/example3" component={Example3} />
                             <Route exact path="/empty" component={Empty} />
                             <Route component={MissingRoute} />
                         </Switch>

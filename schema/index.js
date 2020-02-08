@@ -26,7 +26,8 @@ const RootQueryType = new GraphQLObjectType({
         hello: {
             type: GraphQLString,
             description: 'The mandatory hello world example....',
-            resolve: () => 'Hello World - This message has come from your GraphQL server',
+            resolve: () =>
+                'Hello World - This message has come from your GraphQL server, so you are good to start (Enjoy...!!!)',
         },
 
         launch_info: {

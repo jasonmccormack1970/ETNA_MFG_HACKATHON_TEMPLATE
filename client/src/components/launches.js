@@ -41,7 +41,10 @@ function launches() {
                 <div className="card">
                     <div className="card-body" style={CARD_STYLE}>
                         <h5 className="card-title text-muted">
-                            GraphQL resolver returning data from a public API
+                            GraphQL resolver returning data from a public API{' - '}
+                            <a href="https://docs.spacexdata.com/?version=latest">
+                                View API Documentation
+                            </a>
                         </h5>
                         <Mflag />
                         <ApolloProvider client={client}>
