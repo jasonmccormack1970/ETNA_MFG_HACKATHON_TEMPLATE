@@ -31,12 +31,12 @@ https://github.com/jasonmccormack1970/TEAM2.git
 
 For Team 3 
 ```
-https://github.com/jasonmccormack1970/TEAM1.git
+https://github.com/jasonmccormack1970/TEAM3.git
 ```
 
 For Team 4
 ```
-https://github.com/jasonmccormack1970/TEAM1.git
+https://github.com/jasonmccormack1970/TEAM4.git
 ```
 
 A new folder called TEANn will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
