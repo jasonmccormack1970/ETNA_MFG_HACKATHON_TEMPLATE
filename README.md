@@ -17,14 +17,32 @@ For example your root c drive.
 ```
 cd c:\
 ```
-Next download the hackathon repo
+Next download your hackathon team repo
+
+For Team 1
+``` 
+https://github.com/jasonmccormack1970/TEAM1.git 
 ```
-git clone https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE.git
+
+For Team 2 
 ```
-A new folder called ETNA_MFG_HACKATHON_TEMPLATE will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
-Change directory into the ETNA_MFG_HACKATHON_TEMPLATE folder then run the npm package manager installer
+https://github.com/jasonmccormack1970/TEAM2.git
 ```
-cd ETNA_MFG_HACKATHON_TEMPLATE/
+
+For Team 3 
+```
+https://github.com/jasonmccormack1970/TEAM1.git
+```
+
+For Team 4
+```
+https://github.com/jasonmccormack1970/TEAM1.git
+```
+
+A new folder called TEANn will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
+Change directory into your TEAMn folder then run the npm package manager installer
+```
+cd TEAM1/
 npm install
 ```
 Now change directory into the react client folder and run the npm package manager installer
