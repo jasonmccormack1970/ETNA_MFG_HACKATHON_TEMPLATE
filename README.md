@@ -39,8 +39,8 @@ For Team 4
 https://github.com/jasonmccormack1970/TEAM4.git
 ```
 
-A new folder called TEANn will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
-Change directory into your TEAMn folder then run the npm package manager installer
+A new folder called TEAN(n) will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
+Change directory into your TEAMn folder then run the npm package manager installer : for example
 ```
 cd TEAM1/
 npm install
@@ -51,7 +51,7 @@ cd client
 npm install
 ```
 You can close your Git Bash terminal once the npm installer has completed.
-Now open the ETNA_MFG_HACKATHON_TEMPLATE folder in Visual Code.
+Now open your TEAM(n) folder in Visual Code.
 Check that you have a node_modules folder in the root of your project and a second node_modules folder under the client folder.
 
 Now open a Git Bash terminal from within Visual Code and start your development environment.
@@ -76,6 +76,8 @@ Express GraphQL Server Started ... Listening on Port 3600 - http://localhost:360
 
 A browser session should also automatically start connecting you to http://localhost:3500/ 
 This is the home page of your development environment. 
+
+You should also see a Hello World message on your home page. 
 
 # Creating Your Postgres Database & Test Data
 
