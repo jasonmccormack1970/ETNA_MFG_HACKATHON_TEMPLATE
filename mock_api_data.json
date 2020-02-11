@@ -1,33 +1,51 @@
 {
-    "customers": [
-        {
-            "id": "1",
-            "name": "Rockets R US",
-            "email": "info@Rocketsru.co.test",
-            "region": 10
-        },
-        {
-            "id": "2",
-            "name": "Space 4 U",
-            "email": "info@space4u.co.test",
-            "region": 27
-        }
-    ],
-    "products": [
-        {
-            "id": "4378",
-            "Name": "Falcon 9 ",
-            "Price": "$62m"
-        },
-        {
-            "id": "3095",
-            "Name": "Falcon Heavy ",
-            "Price": "$90m"
-        },
-        {
-            "id": "1889",
-            "Name": "Falcon 9 Desktop Model",
-            "Price": "$140"
-        }
-    ]
+  "customers": [
+    {
+      "id": "1",
+      "name": "Rockets R US",
+      "email": "info@Rocketsru.co.test",
+      "region": 10
+    },
+    {
+      "id": "2",
+      "name": "Space 4 U",
+      "email": "info@space4u.co.test",
+      "region": 27
+    },
+    {
+      "id": "2342",
+      "name": "Rockets R US",
+      "email": "info@Rocketsru.co.test",
+      "region": 10
+    },
+    {
+      "name": "terry",
+      "email": "test@test",
+      "region": 409,
+      "id": "Cs1ELa6"
+    },
+    {
+      "name": "terry",
+      "email": "test@test",
+      "region": 409,
+      "id": "xCeVamP"
+    }
+  ],
+  "products": [
+    {
+      "id": "4378",
+      "Name": "Falcon 9 ",
+      "Price": "$62m"
+    },
+    {
+      "id": "3095",
+      "Name": "Falcon Heavy ",
+      "Price": "$90m"
+    },
+    {
+      "id": "1889",
+      "Name": "Falcon 9 Desktop Model",
+      "Price": "$140"
+    }
+  ]
 }

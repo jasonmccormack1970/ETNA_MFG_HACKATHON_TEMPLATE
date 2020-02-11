@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { onError } from 'apollo-link-error';
-import { Table, Form, FormGroup, Container } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { P_LOADING, P_ERROR, CARD_STYLE } from '../styles/jsx_styles';
 
 // important to use back ticks
@@ -18,10 +18,14 @@ const CUSTOMER_QUERY = gql`
         }
     }
 `;
-function users() {
+function customer() {
     const client = new ApolloClient({
         uri: 'http://localhost:3600/graphql',
     });
+
+    function refreshPage() {
+        window.location.reload(true);
+    }
 
     return (
         <div>
@@ -75,22 +79,15 @@ function users() {
                                             </Table>
                                         </div>
                                     </div>
+                                    <button onClick={refreshPage}>REFRESH PAGE</button>
                                 </div>
                             );
                         }}
                     </Query>
                 </ApolloProvider>
-
-                <Form style={{ marginTop: '20px', marginBottom: '20px', marginLeft: '20px' }}>
-                    ID: <input type="text" name="id"></input>
-                    Name: <input type="text" name="name"></input>
-                    Email: <input type="text" name="email"></input>
-                    Region: <input type="number" name="region"></input>
-                    <button>Submit</button>
-                </Form>
             </div>
         </div>
     );
 }
 
-export default users;
+export default customer;
