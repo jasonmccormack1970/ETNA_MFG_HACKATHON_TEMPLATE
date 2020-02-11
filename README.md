@@ -116,9 +116,9 @@ npm run client
 
 From the root of the project
 
--   Use the client/.env file to set the react_app port number
--   Use the config.json file to set he Express/GraphQL server port number
--   Use the json-server.json file to set the JSON server port number
+-   Use the client/.env file to set/change the react_app port number
+-   Use the config/express_config.json file to set/change he Express/GraphQL server port number
+-   Use the json-server.json file to set/change the JSON server port number
 
 ## How to enable CORS for Express-GraphQL & Apollo Server
 
