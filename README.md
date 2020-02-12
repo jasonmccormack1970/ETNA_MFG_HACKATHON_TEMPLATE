@@ -17,14 +17,32 @@ For example your root c drive.
 ```
 cd c:\
 ```
-Next download the hackathon repo
+Next download your hackathon team repo
+
+For Team 1
+``` 
+https://github.com/jasonmccormack1970/TEAM1.git 
 ```
-git clone https://github.com/jasonmccormack1970/ETNA_MFG_HACKATHON_TEMPLATE.git
+
+For Team 2 
 ```
-A new folder called ETNA_MFG_HACKATHON_TEMPLATE will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
-Change directory into the ETNA_MFG_HACKATHON_TEMPLATE folder then run the npm package manager installer
+https://github.com/jasonmccormack1970/TEAM2.git
 ```
-cd ETNA_MFG_HACKATHON_TEMPLATE/
+
+For Team 3 
+```
+https://github.com/jasonmccormack1970/TEAM3.git
+```
+
+For Team 4
+```
+https://github.com/jasonmccormack1970/TEAM4.git
+```
+
+A new folder called TEAN(n) will have been created. We now need to download and install all the required program dependencies and generates the necessary node_modules folder(s). 
+Change directory into your TEAMn folder then run the npm package manager installer : for example
+```
+cd TEAM1/
 npm install
 ```
 Now change directory into the react client folder and run the npm package manager installer
@@ -33,7 +51,7 @@ cd client
 npm install
 ```
 You can close your Git Bash terminal once the npm installer has completed.
-Now open the ETNA_MFG_HACKATHON_TEMPLATE folder in Visual Code.
+Now open your TEAM(n) folder in Visual Code.
 Check that you have a node_modules folder in the root of your project and a second node_modules folder under the client folder.
 
 Now open a Git Bash terminal from within Visual Code and start your development environment.
@@ -58,6 +76,8 @@ Express GraphQL Server Started ... Listening on Port 3600 - http://localhost:360
 
 A browser session should also automatically start connecting you to http://localhost:3500/ 
 This is the home page of your development environment. 
+
+You should also see a Hello World message on your home page. 
 
 # Creating Your Postgres Database & Test Data
 
@@ -96,9 +116,9 @@ npm run client
 
 From the root of the project
 
--   Use the client/.env file to set the react_app port number
--   Use the config.json file to set he Express/GraphQL server port number
--   Use the json-server.json file to set the JSON server port number
+-   Use the client/.env file to set/change the react_app port number
+-   Use the config/express_config.json file to set/change he Express/GraphQL server port number
+-   Use the json-server.json file to set/change the JSON server port number
 
 ## How to enable CORS for Express-GraphQL & Apollo Server
 
