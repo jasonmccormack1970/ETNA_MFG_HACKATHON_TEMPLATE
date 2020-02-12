@@ -6,6 +6,7 @@ const {
     GraphQLNonNull,
     GraphQLList,
     GraphQLInt,
+    GraphQLInputObjectType,
 } = require('graphql');
 
 const axios = require('axios');
@@ -16,6 +17,7 @@ const MeType = require('./types/me');
 const LaunchType = require('./types/launch');
 const CustomerType = require('./types/customer');
 const UserType = require('./types/users');
+const UserInputType = require('./types/userinput');
 const TasksType = require('./types/task');
 
 // The root query type is where in the data graph begins
@@ -103,6 +105,17 @@ const RootQueryType = new GraphQLObjectType({
 const RootMutationType = new GraphQLObjectType({
     name: 'MutationQuery',
     fields: {
+        addNewUser: {
+            type: UserType,
+            description: 'Add a new user to the database',
+            args: {
+                input: { type: new GraphQLNonNull(UserInputType) },
+            },
+            resolve(obj, { input }, { pgPool }) {
+                return pgdb(pgPool).addNewUser(input);
+            },
+        },
+
         addNewCustomer: {
             type: CustomerType,
             description: 'Add a new customer record via the mock api',

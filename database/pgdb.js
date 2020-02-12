@@ -45,5 +45,21 @@ module.exports = (pgPool) => {
                     return humps.camelizeKeys(res.rows);
                 });
         },
+
+        addNewUser({ email, first_name, last_name, department, api_key }) {
+            return pgPool
+                .query(
+                    `
+                    INSERT INTO public.users(
+                        email, first_name, last_name, department, api_key)
+                        VALUES  ($1, $2, $3, $4, $5)
+                    returning *
+                    `,
+                    [email, first_name, last_name, department, api_key],
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows[0]);
+                });
+        },
     };
 };

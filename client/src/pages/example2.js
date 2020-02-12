@@ -3,11 +3,12 @@ import Me from '../components/me';
 import Users from '../components/users';
 import UserTasks from '../components/userstasks';
 import Tasks from '../components/tasks';
-
+import AddUser from '../components/adduser';
 export default function example2() {
     return (
         <div>
             <h4 className="text-muted">EXAMPLE PAGE 2</h4>
+            <AddUser />
             <Me />
             <UserTasks />
             <Users />
