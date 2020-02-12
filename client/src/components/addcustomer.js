@@ -1,6 +1,5 @@
 import React from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { onError } from 'apollo-link-error';
@@ -19,10 +18,6 @@ const CUSTOMER_QUERY = gql`
     }
 `;
 function Addcustomer() {
-    const client = new ApolloClient({
-        uri: 'http://localhost:3600/graphql',
-    });
-
     function refreshPage() {
         window.location.reload(true);
     }
@@ -45,9 +40,7 @@ function Addcustomer() {
                     </Form.Group>
                 </Form>
 
-                <ApolloProvider client={client}>
-                    <Query query={CUSTOMER_QUERY}></Query>
-                </ApolloProvider>
+                <Query query={CUSTOMER_QUERY}></Query>
             </div>
         </div>
     );

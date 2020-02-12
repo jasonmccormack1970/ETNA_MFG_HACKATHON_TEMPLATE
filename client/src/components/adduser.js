@@ -1,8 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { Query, ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
 
 const ADD_USER = gql`
     input UserInput {
@@ -27,10 +25,7 @@ export default function AddUser() {
     let department;
     let api_key;
 
-    const client = new ApolloClient({
-        uri: 'http://localhost:3600/graphql',
-    });
-    const [AddUser, { data }] = useMutation(ADD_USER, { client });
+    // const [AddUser, { data }] = useMutation(ADD_USER, { client });
 
     return (
         <div>
