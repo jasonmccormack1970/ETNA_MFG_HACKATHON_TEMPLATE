@@ -5,22 +5,8 @@ import { Query, ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-boost';
 
 const ADD_ACTION = gql`
-enum SkillLevel {
-    Junior_engineer
-    Engineer
-    Senior_engineer
-    Principle_engineer
-    Rocket_scientist
-}
-
-input ActionInput {
-    fullname: String!
-    description: String!
-    skillLevel: SkillLevel
-}
-
-mutation addNewAction ($input: ActionInput) { 
-    addNewAction (input: $input) {
+mutation addPageAction ($name: String!, $description: String!, $skillLevel: Int!) { 
+    addPageAction (name: $name, description: $description, skillLevel: $skillLevel) {
         id
     } 
 }
@@ -56,7 +42,7 @@ export default function AddAction() {
         value: 5,
       },
     ];
-    let fullname;
+    let name;
     let description;
     let skillLevel;
     const client = new ApolloClient({
@@ -69,8 +55,8 @@ export default function AddAction() {
         <form
           onSubmit={e => {
             e.preventDefault();
-            addAction({ variables: { fullname: fullname.value, description: description.value, skillLevel: skillLevel.value } });
-            fullname.value = '';
+            addAction({ variables: { name: name.value, description: description.value, skillLevel: parseInt(skillLevel.value) } });
+            name.value = '';
             description.value = '';
             skillLevel.value = '';
           }}
@@ -88,7 +74,7 @@ export default function AddAction() {
             <td>
           <input
             ref={node => {
-              fullname = node;
+              name = node;
             }}
           />
           </td>

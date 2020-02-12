@@ -228,6 +228,18 @@ const RootMutationType = new GraphQLObjectType({
                     .then((res) => res.data);
             },
         },
+        addPageAction: {
+            type: ActionType,
+            description: 'Add a new action to the database',
+            args: {
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                description: { type: new GraphQLNonNull(GraphQLString) },
+                skillLevel: { type: GraphQLInt },
+            },
+            resolve(obj, args, { pgPool } ) {
+                return pgdb(pgPool).addPageAction(args);
+            },
+        },
         addNewAction: {
             type: ActionType,
             description: 'Add a new action to the database',

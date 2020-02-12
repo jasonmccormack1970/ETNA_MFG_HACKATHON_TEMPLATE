@@ -164,6 +164,21 @@ module.exports = (pgPool) => {
                 });
         },
 
+        addPageAction({ name, description, skillLevel }) {
+            return pgPool
+                .query(
+                    `
+                    insert into action (fullname, description, skill_level)
+                    values ($1, $2, $3)
+                    returning *
+                    `,
+                    [name, description, skillLevel],
+                )
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows[0]);
+                });
+        },
+
         addNewAction({ name, description, skillLevel }) {
             return pgPool
                 .query(
