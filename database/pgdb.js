@@ -2,6 +2,14 @@ const humps = require('humps');
 
 module.exports = (pgPool) => {
     return {
+        getDepartments() {
+            return pgPool
+                .query(`select DISTINCT department as department from users`)
+                .then((res) => {
+                    return humps.camelizeKeys(res.rows);
+                });
+        },
+
         getAllUsers() {
             return pgPool.query(`select * from users`).then((res) => {
                 return humps.camelizeKeys(res.rows);

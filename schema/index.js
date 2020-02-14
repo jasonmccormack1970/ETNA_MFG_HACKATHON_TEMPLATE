@@ -40,6 +40,14 @@ const RootQueryType = new GraphQLObjectType({
             },
         },
 
+        Depts: {
+            type: new GraphQLList(UserType),
+            description: 'list DISTINCT Departments from ProstgresDB user table',
+            resolve: (obj, args, { pgPool }) => {
+                return pgdb(pgPool).getDepartments();
+            },
+        },
+
         Users: {
             type: new GraphQLList(UserType),
             description: 'list all users from from ProstgresDB table',
