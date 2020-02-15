@@ -15,6 +15,7 @@ const USERS_QUERY = gql`
             department
             id
             active
+            apikey
         }
     }
 `;
@@ -55,6 +56,7 @@ function users() {
                                                     <th>Department</th>
                                                     <th>Email Address</th>
                                                     <th>Active</th>
+                                                    <th>API KEY</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -65,6 +67,7 @@ function users() {
                                                         <td>{item.department}</td>
                                                         <td>{item.email}</td>
                                                         <td>{item.active}</td>
+                                                        <td>{item.apikey}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>

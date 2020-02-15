@@ -24,15 +24,14 @@ ALTER SEQUENCE public.tasks_id_seq
 CREATE TABLE public.users
 (
     id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
-    email character varying(128) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(128) COLLATE pg_catalog."default",
     first_name character varying(128) COLLATE pg_catalog."default",
     last_name character varying(128) COLLATE pg_catalog."default",
     department character varying(128) COLLATE pg_catalog."default",
-    api_key character varying(128) COLLATE pg_catalog."default" NOT NULL,
+    apikey character varying(128) COLLATE pg_catalog."default",
     created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
     active boolean DEFAULT true,
-    CONSTRAINT users_pkey PRIMARY KEY (id),
-    CONSTRAINT users_api_key_key UNIQUE (api_key)
+    CONSTRAINT users_pkey PRIMARY KEY (id)
 )
 
 TABLESPACE pg_default;
@@ -61,7 +60,7 @@ ALTER TABLE public.tasks
     OWNER to postgres;    
 
 INSERT INTO public.users(
-	email, first_name, last_name, department, api_key )
+	email, first_name, last_name, department, apikey )
 	VALUES 
         (E'fiona.hodges@manf.hackathon.test',E'Fiona',E'Hodges',E'Navigation',E'010'),
         (E'adrian.hill@manf.hackathon.test',E'Adrian',E'Hill',E'Environmental and Consumables',E'020'),

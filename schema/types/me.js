@@ -4,6 +4,7 @@ const {
     GraphQLString,
     GraphQLNonNull,
     GraphQLList,
+    GraphQLInt,
 } = require('graphql');
 
 const pgdb = require('../../database/pgdb');
@@ -21,6 +22,7 @@ module.exports = new GraphQLObjectType({
             resolve: (obj) => `${obj.firstName} ${obj.lastName}`,
         },
         department: { type: GraphQLString },
+        apikey: { type: GraphQLString },
         active: { type: GraphQLString },
         email: { type: new GraphQLNonNull(GraphQLString) },
         createdAt: { type: GraphQLString },

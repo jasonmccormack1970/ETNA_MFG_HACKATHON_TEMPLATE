@@ -17,12 +17,11 @@ const MeType = require('./types/me');
 const LaunchType = require('./types/launch');
 const CustomerType = require('./types/customer');
 const UserType = require('./types/users');
-const UserInputType = require('./types/userinput');
 const TasksType = require('./types/task');
 
 // The root query type is where in the data graph begins
 const RootQueryType = new GraphQLObjectType({
-    name: 'Starting_Point_Query',
+    name: 'Queries',
     description: 'An examle scheme to help get started',
     fields: {
         hello: {
@@ -117,10 +116,14 @@ const RootMutationType = new GraphQLObjectType({
             type: UserType,
             description: 'Add a new user to the database',
             args: {
-                input: { type: new GraphQLNonNull(UserInputType) },
+                first_name: { type: GraphQLString },
+                last_name: { type: GraphQLString },
+                department: { type: GraphQLString },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                apikey: { type: GraphQLString },
             },
-            resolve(obj, { input }, { pgPool }) {
-                return pgdb(pgPool).addNewUser(input);
+            resolve(obj, args, { pgPool }) {
+                return pgdb(pgPool).addNewUser(args);
             },
         },
 

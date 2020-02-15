@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLNonNull, GraphQLInputObjectType } = require('graphql');
+const { GraphQLString, GraphQLInt, GraphQLNonNull, GraphQLInputObjectType } = require('graphql');
 
 const pgdb = require('../../database/pgdb');
 
@@ -9,6 +9,6 @@ module.exports = new GraphQLInputObjectType({
         first_name: { type: new GraphQLNonNull(GraphQLString) },
         last_name: { type: new GraphQLNonNull(GraphQLString) },
         department: { type: new GraphQLNonNull(GraphQLString) },
-        api_key: { type: new GraphQLNonNull(GraphQLString) },
+        apikey: { type: new GraphQLNonNull(GraphQLString) },
     },
 });
