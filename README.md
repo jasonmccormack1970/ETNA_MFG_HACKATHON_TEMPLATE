@@ -74,45 +74,176 @@ http://localhost:3700
 Express GraphQL Server Started ... Listening on Port 3600 - http://localhost:3600/graphql
 ```
 
-A browser session should also automatically start connecting you to http://localhost:3500/ 
-This is the home page of your development environment. 
+A browser session should also automatically start and connect you to http://localhost:3500/ 
+This is the home page of your Hackathon website (your development environmen). 
 
-You should also see a Hello World message on your home page. 
+You should see the following Hello World message on your home page. 
+
+>Hello World - This message has come from your GraphQL server, so you are good to start (Enjoy...!!!)
 
 # Creating Your Postgres Database & Test Data
 
+Using your Hackathon website navigate to Query Demo / Example Page 2 
+(http://localhost:3500/example2)
+
+Because we have not yet created our postgres databases the following 4 error messages will be displayed.
+- GraphQL error: database "todo" does not exist
+- GraphQL error: database "todo" does not exist
+- GraphQL error: database "todo" does not exist
+- GraphQL error: database "todo" does not exist
+
+## Create the "todo" database
+
+Connect to your postgreSQL server:-
+Windows start menu / PostgreSQL 12 / pgAdmin 4
+(http://127.0.0.1:58950/browser/)
+
+Login using the password you set when you installed postgres
+Right Click on Databases(1) - select Create / Database ...
+Enter todo as the database name and postgres as the owner then click [Save] 
+
+The todo database will now appear in the treeview. click on the todo database 
+to highlight it then select Query Tool from the Tools menu
+
+Paste the following script into the Query Editor window
+
+```
+drop table if exists users;
+drop table if exists tasks;
+
+CREATE SEQUENCE public.users_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+ALTER SEQUENCE public.users_id_seq
+    OWNER TO postgres;
+
+CREATE SEQUENCE public.tasks_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 2147483647
+    CACHE 1;
+
+ALTER SEQUENCE public.tasks_id_seq
+    OWNER TO postgres;
+	
+CREATE TABLE public.users
+(
+    id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+    email character varying(128) COLLATE pg_catalog."default",
+    first_name character varying(128) COLLATE pg_catalog."default",
+    last_name character varying(128) COLLATE pg_catalog."default",
+    department character varying(128) COLLATE pg_catalog."default",
+    apikey character varying(128) COLLATE pg_catalog."default",
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    active boolean DEFAULT true,
+    CONSTRAINT users_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.users
+    OWNER to postgres;
+
+CREATE TABLE public.tasks
+(
+    id integer NOT NULL DEFAULT nextval('tasks_id_seq'::regclass),
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    notes text COLLATE pg_catalog."default",
+    status character varying(10) COLLATE pg_catalog."default" NOT NULL DEFAULT 'draft'::character varying,
+    created_at timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    assignedto integer NOT NULL,
+    CONSTRAINT tasks_pkey PRIMARY KEY (id),
+    CONSTRAINT tasks_created_by_fkey FOREIGN KEY (assignedto)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.tasks
+    OWNER to postgres;    
+
+INSERT INTO public.users(
+	email, first_name, last_name, department, apikey )
+	VALUES 
+        (E'fiona.hodges@manf.hackathon.test',E'Fiona',E'Hodges',E'Navigation',E'010'),
+        (E'adrian.hill@manf.hackathon.test',E'Adrian',E'Hill',E'Environmental and Consumables',E'020'),
+        (E'jake.edmunds@manf.hackathon.test',E'Jake',E'Edmunds',E'Payload Deployment',E'030'),
+        (E'wendy.ferguson@manf.hackathon.test',E'Wendy',E'Ferguson',E'Ground Control',E'040'),
+        (E'commolly.morrison@manf.hackathon.test',E'Molly',E'Morrison',E'Payload Operations',E'050'),
+        (E'emily.randall@manf.hackathon.test',E'Emily',E'Randall',E'Flight research',E'060'),
+        (E'gavin.walker@manf.hackathon.test',E'Gavin',E'Walker',E'Illumination Engineering',E'070'),
+        (E'faith.anderson@manf.hackathon.test',E'Faith',E'Anderson',E'Propulsion technology',E'080'),
+        (E'ian.rutherford@manf.hackathon.test',E'Ian',E'Rutherford',E'Flight research',E'090'),
+        (E'stephanie.dickens@manf.hackahon.test',E'Stephanie',E'Dickens',E'Instrumentation and Communications',E'100');
+
+INSERT INTO public.tasks(
+ title, notes, status, assignedto)
+	VALUES  
+     (E'Pack air freshener',E'The nice smelling one',E'Pending',E'2'),
+     (E'Fill fuel tanks',E'Remeber to use unleaded fuel',E'Pending',E'8'),
+     (E'Put space maps and good food guide in glove compartment',E'',E'Pending',E'1');
+```
+
+Use the [Play] button or press F5 to excute the query
+The SQL script can also be found in your Visual Code project ../database/CreateTbl.sql
+
+If you now return to Query Demo / Example Page 2 
+http://localhost:3500/example2
+Note: you may need to refresh the page 
+You should now see User and Task data. 
+If instead you see the following error message
+
+- GraphQL error: password authentication failed for user "postgres"
+
+check the following file "../config/pg.js" in your Visual Code project. make sure the values set match
+your installation of postgres
+
+```
+module.exports = {
+    development: {
+        database: 'todo',
+        user: 'postgres',
+        password: 'myexamplepassword',
+    },
+};
+```
 
 
+# NPM Scripts
 
-## NPM Scripts
-
-to start EXPRESS, GRAPHQL, JSON and REACT
+to start your EXPRESS, GRAPHQL, JSON-SERVER and REACT Client
 
 ```
 npm run dev
 ```
 
-To only start the Express/GraphQL Server
+To only start your Express and GraphQL Servers
 
 ```
 npm run server
 ```
 
-To only start the JSON Server
+To only start your JSON Server
 
 ```
 npm run json:server
 ```
 
-To only start the react-app
+To only start the react
 
 ```
 npm run client
 ```
+## NOTE - BEFORE YOUR START CREATE A LOCAL BRANCH - NEVER MODIFY YOUR MASTER BRANCH
 
-
-
-## Override Default Port Numbers
+# Override Default Port Numbers
 
 From the root of the project
 
@@ -120,7 +251,7 @@ From the root of the project
 -   Use the config/express_config.json file to set/change he Express/GraphQL server port number
 -   Use the json-server.json file to set/change the JSON server port number
 
-## How to enable CORS for Express-GraphQL & Apollo Server
+# How to enable CORS for Express-GraphQL & Apollo Server
 
 If you follow many of the example on how to configure an Express-GraphQL & Apollo Server you may encounter a problem with Cross-origin resource sharing, (CORS)
 
