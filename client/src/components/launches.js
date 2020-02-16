@@ -79,11 +79,13 @@ function launches() {
                                                             {item.mission_name} - {item.launch_year}
                                                         </span>
                                                     </h6>
-                                                    <p>
+                                                    <div>
                                                         Launched from :
                                                         {item.launch_site.site_name_long}
-                                                    </p>
-                                                    <p>Rocket used: {item.rocket.rocket_name}</p>
+                                                    </div>
+                                                    <div>
+                                                        Rocket used: {item.rocket.rocket_name}
+                                                    </div>
                                                 </li>
                                             ))}
                                         </ul>

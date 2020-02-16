@@ -1,6 +1,20 @@
 import gql from 'graphql-tag';
 
 // Remeber to wrap queries in back ticks ``
+
+const getUsersQuery = gql`
+    query UserQuery {
+        Users {
+            fullName
+            email
+            department
+            id
+            active
+            apikey
+        }
+    }
+`;
+
 const getDeptQuery = gql`
     query GetDeptQuery {
         Depts {
@@ -29,4 +43,4 @@ const addNewUserMutation = gql`
     }
 `;
 
-export { getDeptQuery, addNewUserMutation };
+export { getUsersQuery, getDeptQuery, addNewUserMutation };

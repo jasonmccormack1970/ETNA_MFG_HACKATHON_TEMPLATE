@@ -13,12 +13,12 @@ const exampeData = {
 export default function home() {
     return (
         <div>
-            <h4 className="text-muted">HOME PAGE</h4>
+            <h4 className="text-muted text-center">HOME PAGE</h4>
             {<HelloWorld {...exampeData} />}
             <div>
                 <div style={{ padding: '20px' }}>
-                    <h6 className="lead">Background</h6>
-                    <div>
+                    <h6 className="lead font-weight-bold">Background</h6>
+                    <div className="d-flex align-self-start">
                         SpaceX is a company that launches rockets into space. They have had
                         successes and failures. In order to increase the successes, they realise
                         they need a plan for each rocket launch. This plan would have a description,
@@ -27,8 +27,8 @@ export default function home() {
                         completion.
                     </div>
                 </div>
-                <div style={{ padding: '20px' }}>
-                    <h6 className="lead">Use Cases</h6>
+                <div className="d-flex align-items-start" style={{ padding: '20px' }}>
+                    <h6 className="lead font-weight-bold">Use Cases</h6>
                     <ul>
                         <li>
                             The launch manager needs to create actions required for a rocket launch.
@@ -46,11 +46,6 @@ export default function home() {
                         </li>
                         <li>The engineer needs to update actions on a rocket launch plan.</li>
                     </ul>
-                </div>
-                <div>
-                    <div style={{ padding: '20px' }}>
-                        <h6 className="lead">Useful Links</h6>
-                    </div>
                 </div>
             </div>
         </div>

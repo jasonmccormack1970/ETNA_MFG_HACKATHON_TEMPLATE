@@ -27,7 +27,7 @@ export const NavigationBar = () => (
                 <Nav className="ml-auto">
                     <Nav.Link href="/">Home</Nav.Link>
 
-                    <NavDropdown title="Demo Pages" id="basic-nav-dropdown">
+                    <NavDropdown title="Query Demos" id="basic-nav-dropdown">
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="/example">
                             Example Page 1 - Public API
@@ -40,6 +40,15 @@ export const NavigationBar = () => (
                         </NavDropdown.Item>
                         <NavDropdown.Divider />
                     </NavDropdown>
+
+                    <NavDropdown title="Mutation Demos" id="basic-nav-dropdown">
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="/example4">
+                            Example Page 4 - PostgresDB
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                    </NavDropdown>
+
                     <NavDropdown title="Servers" id="basic-nav-dropdown">
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="http://localhost:3600/graphql">

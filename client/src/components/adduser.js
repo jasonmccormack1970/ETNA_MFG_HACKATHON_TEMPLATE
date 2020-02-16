@@ -32,6 +32,10 @@ class AddDataTest extends Component {
         }
     }
 
+    refreshPage() {
+        window.location.reload(true);
+    }
+
     submitForm(e) {
         e.preventDefault();
         this.props.addNewUserMutation({
@@ -44,6 +48,8 @@ class AddDataTest extends Component {
                 apikey: crypto.randomBytes(Math.ceil(10 / 2)).toString('hex'),
             },
         });
+        // Not best method for performance but OK for a demo
+        this.refreshPage();
     }
 
     render() {

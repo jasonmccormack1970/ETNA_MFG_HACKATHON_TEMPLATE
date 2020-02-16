@@ -127,24 +127,24 @@ const RootMutationType = new GraphQLObjectType({
             },
         },
 
-        addNewCustomer: {
-            type: CustomerType,
-            description: 'Add a new customer record via the mock api',
-            args: {
-                name: { type: new GraphQLNonNull(GraphQLString) },
-                email: { type: new GraphQLNonNull(GraphQLString) },
-                region: { type: new GraphQLNonNull(GraphQLInt) },
-            },
-            resolve(obj, args) {
-                axios
-                    .post(`http://localhost:${jsonServerPort}/customers`, {
-                        name: args.name,
-                        email: args.email,
-                        region: args.region,
-                    })
-                    .then((res) => res.data);
-            },
-        },
+        // addNewCustomer: {
+        //     type: CustomerType,
+        //     description: 'Add a new customer record via the mock api',
+        //     args: {
+        //         name: { type: GraphQLString },
+        //         email: { type: GraphQLString },
+        //         region: { type: GraphQLString },
+        //     },
+        //     resolve(obj, args) {
+        //         axios
+        //             .post(`http://localhost:${jsonServerPort}/customers`, {
+        //                 name: args.name,
+        //                 email: args.email,
+        //                 region: args.region,
+        //             })
+        //             .then((res) => res.data);
+        //     },
+        // },
     },
 });
 
