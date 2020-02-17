@@ -30,11 +30,6 @@ module.exports = (pgPool) => {
                 });
         },
 
-        getUserTasks(apiKey) {
-            return pgPool.query(`select * from tasks where id = $1`, [apiKey]).then((res) => {
-                return humps.camelizeKeys(res.rows);
-            });
-        },
         getTasks() {
             return pgPool.query(`select * from tasks`).then((res) => {
                 return humps.camelizeKeys(res.rows);

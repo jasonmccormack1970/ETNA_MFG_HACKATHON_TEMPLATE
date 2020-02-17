@@ -33,7 +33,7 @@ const RootQueryType = new GraphQLObjectType({
 
         launch_info: {
             type: new GraphQLList(LaunchType),
-            description: 'SpaceX - Open Source REST API for rocket, capsule, pad, and launch data',
+            description: 'SpaceX - Open Source REST API launch data',
             resolve: (obj, args) => {
                 return axios.get('https://api.spacexdata.com/v3/launches').then((res) => res.data);
             },
@@ -49,7 +49,7 @@ const RootQueryType = new GraphQLObjectType({
 
         Users: {
             type: new GraphQLList(UserType),
-            description: 'list all users from from ProstgresDB table',
+            description: 'list all users from from Prostgres user table',
             resolve: (obj, args, { pgPool }) => {
                 return pgdb(pgPool).getAllUsers();
             },
@@ -57,7 +57,7 @@ const RootQueryType = new GraphQLObjectType({
 
         about_Me: {
             type: MeType,
-            description: 'Infomation about me (logged in??) and to do list from ProstgresDB',
+            description: 'Infomation about me (logged in??) and task list from ProstgresDB',
             args: {
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
@@ -68,7 +68,7 @@ const RootQueryType = new GraphQLObjectType({
 
         tasks: {
             type: new GraphQLList(TasksType),
-            description: 'list all users from from ProstgresDB tableB',
+            description: 'list all users',
             resolve: (obj, args, { pgPool }) => {
                 return pgdb(pgPool).getTasks();
             },
@@ -76,7 +76,7 @@ const RootQueryType = new GraphQLObjectType({
 
         user_tasks: {
             type: new GraphQLList(TasksType),
-            description: 'list all users from from ProstgresDB tableB',
+            description: 'list tasks from a selected user',
             args: {
                 key: { type: new GraphQLNonNull(GraphQLString) },
             },
@@ -87,7 +87,7 @@ const RootQueryType = new GraphQLObjectType({
 
         customer: {
             type: CustomerType,
-            description: 'Return selected Customer data from a locally hosted mock api',
+            description: 'Return a selected Customer data from mock api',
             args: {
                 id: { type: GraphQLString },
             },
@@ -99,7 +99,7 @@ const RootQueryType = new GraphQLObjectType({
         },
         customers: {
             type: new GraphQLList(CustomerType),
-            description: 'Return all Customer data from a locally hosted mock api',
+            description: 'Return all Customer data from mock api',
             resolve(parentValue, args) {
                 return axios
                     .get(`http://localhost:${jsonServerPort}/customers`)
@@ -110,7 +110,7 @@ const RootQueryType = new GraphQLObjectType({
 });
 
 const RootMutationType = new GraphQLObjectType({
-    name: 'MutationQuery',
+    name: 'Mutations',
     fields: {
         addNewUser: {
             type: UserType,
